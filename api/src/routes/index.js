@@ -1,6 +1,9 @@
 const express = require('express');
 const { Router } = require('express');
 const { getAllCountries } = require('../controllers/getAllCountries');
+const { getCountriesById } = require('../controllers/getCountriesById');
+const { getCountriesByName } = require('../controllers/getCountriesByName');
+
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -19,11 +22,22 @@ router.get('/countries', async (req, res) => {
 	}
 });
 
+//Busqueda por name Query
+router.get('/countries/name', async (req, res, next) => {
+    const { name } = req.query;
+    try {
+        const countries = await getCountriesByName(name);
+        return res.json(countries);
+    } catch (error) {
+        return next(error);
+    }
+});
+
 //Busqueda por ID
-router.get('/:id', async (req, res, next) => {
+router.get('/countries/:id', async (req, res, next) => {
 	const { id } = req.params;
 	try {
-		const country = await Country.findByPk(id);
+		const country = await getCountriesById(id);
 		if (!country) {
 			return res.status(404).send('Country not found');
 		}
