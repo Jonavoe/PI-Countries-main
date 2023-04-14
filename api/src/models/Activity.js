@@ -22,6 +22,9 @@ module.exports = (sequelize) => {
 
 		season: {
 			type: DataTypes.STRING,
+			validate: {
+				isIn: [['verano', 'primavera', 'otoño', 'invierno']],
+			},
 		},
 	});
 };

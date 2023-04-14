@@ -13,7 +13,7 @@ const getApiData = async () => {
 	}
 };
 
-const saveApiData = async () => {
+const saveApiData = async (req, res) => {
 	const countries = await getApiData();
 	countries.forEach(async (country) => {
 		let { cca3, name, flags, region, subregion, capital, area, population } =
@@ -25,11 +25,11 @@ const saveApiData = async () => {
 			defaults: {
 				name: name.common || 'Unknown',
 				image: flags.png || 'https://via.placeholder.com/150',
-				continent: region?.name || 'Unknown',
-                subregion: subregion?.name || 'Unknown',
-				population: population?.value || 0,
+				continent: region|| 'Unknown',
+				subregion: subregion || 'Unknown',
+				population: population || 0,
 				capital: capital?.[0] || 'Unknown',
-				area: area?.km2 || 0,
+				area: area || 0,
 			},
 		});
 	});
