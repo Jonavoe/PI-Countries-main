@@ -43,6 +43,10 @@ function Home({ countries }) {
 	return (
 		<div className={styles.container}>
 			<button onClick={togglePaises}>Ver paises</button>
+			
+			<Link to='/form'>
+				<button>Añadir actividad</button>
+			</Link>
 			<form
 				className={styles.searchBar}
 				onSubmit={handleFormSubmit}>
@@ -56,6 +60,7 @@ function Home({ countries }) {
 				/>
 				<button>Buscar</button>
 			</form>
+			
 			<div>
 				{countryData &&
 					countryData.map((countryData) => (

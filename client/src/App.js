@@ -29,15 +29,11 @@ function App() {
 				/>
 				<Route
 					path='/form'
-					element={<Form />}
+					element={<Form allCountries={countries} />}
 				/>
 				<Route
 					path='/detail/:id'
-					element={
-						<Detail
-							countries={countries}
-						/>
-					}
+					element={<Detail countries={countries} />}
 				/>
 			</Routes>
 		</div>
