@@ -71,7 +71,7 @@ function Home({ countries }) {
 							<p>Continent: {countryData.continent}</p>
 							<p>SubRegion: {countryData.subregion}</p>
 							<p>Poblacion: {countryData.population}</p>
-							<div>
+							{/* <div>
 								{countryData.Activities.map((activity) => (
 									<div key={activity.name}>
 										<p>Name: {activity.name}</p>
@@ -80,7 +80,7 @@ function Home({ countries }) {
 										<p>Season: {activity.season}</p>
 									</div>
 								))}
-							</div>
+							</div> */}
 						</div>
 					))}
 			</div>
