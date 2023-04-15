@@ -1,42 +1,69 @@
-const { default: axios } = require('axios');
+const { Op } = require('sequelize');
+const { Country, Activity } = require('../db.js');
 
-const getCountriesByName = (name) => {
-	if (typeof name !== 'string') {
-		throw new TypeError('El argumento "name" debe ser una cadena de texto');
-	}
-
-	const url = `https://restcountries.com/v3.1/name/${encodeURIComponent(name)}`;
-
-	return axios
-		.get(url)
-		.then((response) => {
-			const countries = response.data.filter((country) => {
-				return (
-					country.name.common.toLowerCase().includes(name.toLowerCase()) ||
-					country.name.official.toLowerCase().includes(name.toLowerCase())
-				);
-			});
-
-			if (countries.length === 0) {
-				throw new Error(`No se encontraron países con el nombre "${name}"`);
-			} else {
-				return countries;
-			}
-		})
-		.catch((error) => {
-			if (error.response) {
-				throw new Error(
-					`La API de restcountries respondió con un error: ${error.response.status} ${error.response.statusText}`
-				);
-			} else if (error.request) {
-				throw new Error('No se pudo conectar a la API de restcountries');
-			} else {
-				throw new Error('Ocurrió un error al procesar la solicitud');
-			}
+const getCountriesByName = async (name) => {
+	try {
+		const countries = await Country.findAll({
+			where: {
+				name: {
+					[Op.iLike]: `%${name}%`, // Utiliza el operador "ILIKE" para hacer una búsqueda case-insensitive
+				},
+			},
+			include: {
+				model: Activity,
+				attributes: ['name', 'difficult', 'duration', 'season'],
+				through: {
+					attributes: [],
+				},
+			},
 		});
+		return countries;
+	} catch (error) {
+		return { error: error.message };
+	}
 };
 
 module.exports = { getCountriesByName };
+
+// const { default: axios } = require('axios');
+
+// const getCountriesByName = (name) => {
+// 	if (typeof name !== 'string') {
+// 		throw new TypeError('El argumento "name" debe ser una cadena de texto');
+// 	}
+
+// 	const url = `https://restcountries.com/v3.1/name/${encodeURIComponent(name)}`;
+
+// 	return axios
+// 		.get(url)
+// 		.then((response) => {
+// 			const countries = response.data.filter((country) => {
+// 				return (
+// 					country.name.common.toLowerCase().includes(name.toLowerCase()) ||
+// 					country.name.official.toLowerCase().includes(name.toLowerCase())
+// 				);
+// 			});
+
+// 			if (countries.length === 0) {
+// 				throw new Error(`No se encontraron países con el nombre "${name}"`);
+// 			} else {
+// 				return countries;
+// 			}
+// 		})
+// 		.catch((error) => {
+// 			if (error.response) {
+// 				throw new Error(
+// 					`La API de restcountries respondió con un error: ${error.response.status} ${error.response.statusText}`
+// 				);
+// 			} else if (error.request) {
+// 				throw new Error('No se pudo conectar a la API de restcountries');
+// 			} else {
+// 				throw new Error('Ocurrió un error al procesar la solicitud');
+// 			}
+// 		});
+// };
+
+// module.exports = { getCountriesByName };
 
 // const { default: axios } = require('axios');
 

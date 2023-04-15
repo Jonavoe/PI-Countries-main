@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
 import styles from './Home.module.css';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCountryData } from '../../Redux/actions';
 
 function Home({ countries }) {
 	const [currentPage, setCurrentPage] = useState(1);
-	const [countriesPerPage, setCountriesPerPage] = useState(10);
+	const [countriesPerPage] = useState(10);
+	const [searchValue, setSearchValue] = useState('');
+	const [verPaises, setVerPaises] = useState(true);
+	const countryData = useSelector((state) => state.countryData);
+	const dispatch = useDispatch();
 
 	const indexOfLastCountry = currentPage * countriesPerPage;
 	const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
@@ -19,42 +25,106 @@ function Home({ countries }) {
 		setCurrentPage(pageNumber);
 	}
 
+	function handleFormSubmit(event) {
+		event.preventDefault();
+		dispatch(fetchCountryData(searchValue));
+		setSearchValue('');
+	}
+
+	function handleInputChange(event) {
+		setSearchValue(event.target.value);
+	}
+
+	function togglePaises() {
+		setVerPaises(!verPaises);
+	}
+
+	console.log(countryData)
 	return (
 		<div className={styles.container}>
-			<h1>List of countries</h1>
-			<div className={styles.countries}>
-				{currentCountries.map((country) => (
-					<Link to={`/detail/${country.cca3}`}>
-						<div key={country.name.common}>
-							<p>{country.name.common}</p>
-							<p>{country.continents[0]}</p>
-							<img src={country.flags.png} />
+			<button onClick={togglePaises}>Ver paises</button>
+			<form
+				className={styles.searchBar}
+				onSubmit={handleFormSubmit}>
+				<label>Busca un pais</label>
+				<input
+					type='text'
+					name='pais'
+					value={searchValue}
+					onChange={handleInputChange}
+					placeholder='Ingrese el pais'
+				/>
+				<button>Buscar</button>
+			</form>
+			<div>
+				{countryData &&
+					countryData.map((countryData) => (
+						<div key={countryData.id}>
+							<p>Pais: {countryData.name}</p>
+							<Link to={`/detail/${countryData.id}`}>
+								<img
+									src={countryData.image}
+									alt={countryData.name}
+								/>
+							</Link>
+							<p>Capital: {countryData.capital}</p>
+							<p>Continent: {countryData.continent}</p>
+							<p>SubRegion: {countryData.subregion}</p>
+							<p>Poblacion: {countryData.population}</p>
+							<div>
+								{countryData.Activities.map((activity) => (
+									<div key={activity.name}>
+										<p>Name: {activity.name}</p>
+										<p>Difficult: {activity.difficult}</p>
+										<p>Duration: {activity.duration}</p>
+										<p>Season: {activity.season}</p>
+									</div>
+								))}
+							</div>
 						</div>
-					</Link>
-				))}
+					))}
 			</div>
-			<div className={styles.pagination}>
-				<button
-					onClick={() => handleClick(currentPage - 1)}
-					disabled={currentPage === 1}>
-					Previous
-				</button>
-				{Array.from({ length: totalPages }, (_, i) => i + 1).map(
-					(pageNumber) => (
+			{!verPaises ? (
+				<div>
+					<h1>List of countries</h1>
+					<div className={styles.countries}>
+						{currentCountries.map((country) => (
+							<div key={country.cca3}>
+								<Link to={`/detail/${country.cca3}`}>
+									<p>{country.name.common}</p>
+									<p>{country.continents[0]}</p>
+									<img
+										src={country.flags.png}
+										alt={country.flags.alt}
+									/>
+								</Link>
+							</div>
+						))}
+					</div>
+					<div className={styles.pagination}>
 						<button
-							key={pageNumber}
-							onClick={() => handleClick(pageNumber)}
-							disabled={currentPage === pageNumber}>
-							{pageNumber}
+							onClick={() => handleClick(currentPage - 1)}
+							disabled={currentPage === 1}>
+							Previous
 						</button>
-					)
-				)}
-				<button
-					onClick={() => handleClick(currentPage + 1)}
-					disabled={currentPage === totalPages}>
-					Next
-				</button>
-			</div>
+						{Array.from({ length: totalPages }, (_, i) => i + 1).map(
+							(pageNumber) => (
+								<button
+									key={pageNumber}
+									onClick={() => handleClick(pageNumber)}
+									disabled={currentPage === pageNumber}>
+									{pageNumber}
+								</button>
+							)
+						)}
+						<button
+							onClick={() => handleClick(currentPage + 1)}
+							disabled={currentPage === totalPages}>
+							Next
+						</button>
+					</div>
+				</div>
+			) : null}
 		</div>
 	);
 }

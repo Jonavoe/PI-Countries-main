@@ -33,7 +33,11 @@ function App() {
 				/>
 				<Route
 					path='/detail/:id'
-					element={<Detail countries={countries} />}
+					element={
+						<Detail
+							countries={countries}
+						/>
+					}
 				/>
 			</Routes>
 		</div>
