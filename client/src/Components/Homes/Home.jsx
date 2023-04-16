@@ -39,11 +39,11 @@ function Home({ countries }) {
 		setVerPaises(!verPaises);
 	}
 
-	console.log(countryData)
+	console.log(countryData);
 	return (
 		<div className={styles.container}>
 			<button onClick={togglePaises}>Ver paises</button>
-			
+
 			<Link to='/form'>
 				<button>Añadir actividad</button>
 			</Link>
@@ -60,7 +60,7 @@ function Home({ countries }) {
 				/>
 				<button>Buscar</button>
 			</form>
-			
+
 			<div>
 				{countryData &&
 					countryData.map((countryData) => (
@@ -76,7 +76,7 @@ function Home({ countries }) {
 							<p>Continent: {countryData.continent}</p>
 							<p>SubRegion: {countryData.subregion}</p>
 							<p>Poblacion: {countryData.population}</p>
-							{/* <div>
+							<div>
 								{countryData.Activities.map((activity) => (
 									<div key={activity.name}>
 										<p>Name: {activity.name}</p>
@@ -85,7 +85,7 @@ function Home({ countries }) {
 										<p>Season: {activity.season}</p>
 									</div>
 								))}
-							</div> */}
+							</div>
 						</div>
 					))}
 			</div>

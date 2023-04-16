@@ -2,13 +2,6 @@ import React, { useState } from 'react';
 import styles from './Form.module.css';
 import { Link } from 'react-router-dom';
 
-const countryList = [
-	{ code: 'ARG', name: 'Argentina' },
-	{ code: 'URY', name: 'Uruguay' },
-	{ code: 'BRA', name: 'Brazil' },
-	{ code: 'CHL', name: 'Chile' },
-];
-
 function Form({ allCountries }) {
 	const [name, setName] = useState('');
 	const [difficult, setDifficult] = useState(1);
@@ -16,6 +9,10 @@ function Form({ allCountries }) {
 	const [season, setSeason] = useState('verano');
 	const [selectedCountries, setSelectedCountries] = useState([]);
 	const [searchText, setSearchText] = useState('');
+
+	const countries = allCountries.map((country) => {
+		return { cca3: country.cca3, name: country.name.common };
+	});
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
@@ -30,7 +27,7 @@ function Form({ allCountries }) {
 					difficult,
 					duration,
 					season,
-					country: selectedCountries,
+					countries: selectedCountries,
 				}),
 			});
 			const data = await response.json();
@@ -54,7 +51,7 @@ function Form({ allCountries }) {
 		setSearchText(event.target.value);
 	};
 
-	const filteredCountries = countryList.filter((country) =>
+	const filteredCountries = countries.filter((country) =>
 		country.name.toLowerCase().includes(searchText.toLowerCase())
 	);
 
@@ -114,23 +111,23 @@ function Form({ allCountries }) {
 						multiple
 						value={selectedCountries}
 						onChange={handleCountryChange}>
-						{filteredCountries.map((country) => (
+						{filteredCountries ? filteredCountries.map((country) => (
 							<option
-								key={country.code}
-								value={country.code}>
+								key={country.cca3}
+								value={country.cca3}>
 								{country.name}
 							</option>
-						))}
+						)): 'Cargando paises'}
 					</select>
-					{selectedCountries.map((code) => (
+					{selectedCountries.map((cca3) => (
 						<button
-							key={code}
+							key={cca3}
 							onClick={() =>
 								setSelectedCountries(
-									selectedCountries.filter((c) => c !== code)
+									selectedCountries.filter((c) => c !== cca3)
 								)
 							}>
-							{countryList.find((country) => country.code === code).name}{' '}
+							{allCountries.find((country) => country.cca3 === cca3).name.common}{' '}
 							&times;
 						</button>
 					))}
@@ -150,156 +147,3 @@ function Form({ allCountries }) {
 	);
 }
 export default Form;
-
-// import React, { useState } from 'react';
-// import styles from './Form.module.css';
-// import { Link } from 'react-router-dom';
-
-// const countryList = [
-// 	{ code: 'ARG', name: 'Argentina' },
-// 	{ code: 'URY', name: 'Uruguay' },
-// 	{ code: 'BRA', name: 'Brazil' },
-// 	{ code: 'CHL', name: 'Chile' },
-// ];
-
-// function Form({allCountries}) {
-// 	const [name, setName] = useState('');
-// 	const [difficult, setDifficult] = useState(1);
-// 	const [duration, setDuration] = useState(6);
-// 	const [season, setSeason] = useState('verano');
-// 	const [selectedCountries, setSelectedCountries] = useState([]);
-// 	const [searchText, setSearchText] = useState('');
-
-// 	const handleSubmit = async (event) => {
-// 		event.preventDefault();
-// 		try {
-// 			const response = await fetch('http://localhost:3001/activities', {
-// 				method: 'POST',
-// 				headers: {
-// 					'Content-Type': 'application/json',
-// 				},
-// 				body: JSON.stringify({
-// 					name,
-// 					difficult,
-// 					duration,
-// 					season,
-// 					country: selectedCountries,
-// 				}),
-// 			});
-// 			const data = await response.json();
-// 			console.log(data);
-// 		} catch (error) {
-// 			console.error(error);
-// 		}
-// 	};
-
-// 	const handleCountryChange = (event) => {
-// 		const selectedOptions = Array.from(event.target.selectedOptions);
-// 		const selectedCountryCodes = selectedOptions.map((option) => option.value);
-// 		selectedCountryCodes.forEach((code) => {
-// 			if (!selectedCountries.includes(code)) {
-// 				setSelectedCountries([...selectedCountries, code]);
-// 			}
-// 		});
-// 	};
-
-// 	const handleSearchTextChange = (event) => {
-// 		setSearchText(event.target.value);
-// 	};
-
-// 	const filteredCountries = countryList.filter((country) =>
-// 		country.name.toLowerCase().includes(searchText.toLowerCase())
-// 	);
-
-// 	return (
-// 		<div className={styles.container}>
-// 			<Link to='/home'>
-// 				<button>Home Page</button>
-// 			</Link>
-// 			<form onSubmit={handleSubmit}>
-// 				<div>
-// 					<label htmlFor='name'>Name:</label>
-// 					<input
-// 						type='text'
-// 						id='name'
-// 						value={name}
-// 						onChange={(event) => setName(event.target.value)}
-// 					/>
-// 				</div>
-// 				<div>
-// 					<label htmlFor='difficult'>Difficult:</label>
-// 					<input
-// 						type='number'
-// 						id='difficult'
-// 						min='1'
-// 						max='5'
-// 						value={difficult}
-// 						onChange={(event) => setDifficult(parseInt(event.target.value))}
-// 					/>
-// 				</div>
-// 				<div>
-// 					<label htmlFor='duration'>Duration:</label>
-// 					<input
-// 						type='number'
-// 						id='duration'
-// 						min='1'
-// 						max='24'
-// 						value={duration}
-// 						onChange={(event) => setDuration(parseInt(event.target.value))}
-// 					/>
-// 				</div>
-// 				<div>
-// 					<label htmlFor='season'>Season:</label>
-// 					<select
-// 						id='season'
-// 						value={season}
-// 						onChange={(event) => setSeason(event.target.value)}>
-// 						<option value='verano'>Summer</option>
-// 						<option value='invierno'>Winter</option>
-// 						<option value='primavera'>Spring</option>
-// 						<option value='otoño'>Fall</option>
-// 					</select>
-// 				</div>
-// 				<div>
-// 					<label htmlFor='countries'>Countries:</label>
-// 					<select
-// 						id='countries'
-// 						multiple
-// 						value={selectedCountries}
-// 						onChange={handleCountryChange}>
-// 						{filteredCountries.map((country) => (
-// 							<option
-// 								key={country.code}
-// 								value={country.code}>
-// 								{country.name}
-// 							</option>
-// 						))}
-// 					</select>
-// 					{selectedCountries.map((code) => (
-// 						<button
-// 							key={code}
-// 							onClick={() =>
-// 								setSelectedCountries(
-// 									selectedCountries.filter((c) => c !== code)
-// 								)
-// 							}>
-// 							{countryList.find((country) => country.code === code).name}{' '}
-// 							&times;
-// 						</button>
-// 					))}
-// 				</div>
-// 				<div>
-// 					<label htmlFor='searchText'>Search Country:</label>
-// 					<input
-// 						type='text'
-// 						id='searchText'
-// 						value={searchText}
-// 						onChange={handleSearchTextChange}
-// 					/>
-// 				</div>
-// 				<button type='submit'>Submit</button>
-// 			</form>
-// 		</div>
-// 	);
-// }
-// export default Form;

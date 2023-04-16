@@ -6,6 +6,7 @@ const { getCountriesByName } = require('../controllers/getCountriesByName');
 const { postActivity } = require('../controllers/postActivity');
 const { saveApiData } = require('../controllers/getApiData');
 const { getAllActivities } = require('../controllers/getAllActivities');
+const { deleteActivity } = require('../controllers/deleteActivity');
 
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -14,7 +15,7 @@ const router = Router();
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
-saveApiData()
+saveApiData();
 
 router.get('/', async (req, res) => {
 	try {
@@ -41,7 +42,7 @@ router.get('/countries/name', async (req, res, next) => {
 		const countries = await getCountriesByName(name);
 		return res.json(countries);
 	} catch (error) {
-		return next(error);
+		return res.status(400).json({ error: error.message });
 	}
 });
 
@@ -55,7 +56,7 @@ router.get('/countries/:id', async (req, res, next) => {
 		}
 		return res.json(country);
 	} catch (error) {
-		return next(error);
+		return next(ererror.messageror);
 	}
 });
 router.get('/activities', async (req, res, next) => {
@@ -66,11 +67,13 @@ router.get('/activities', async (req, res, next) => {
 		}
 		return res.json(activity);
 	} catch (error) {
-		return next(error);
+		return res.status(400).json({ error: error.message });
 	}
 });
 
 //Post activity
 router.post('/activities', postActivity);
+
+router.delete('/activities/:id', deleteActivity);
 
 module.exports = router;

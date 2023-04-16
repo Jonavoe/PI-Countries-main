@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { fetchDetailData } from '../../Redux/actions';
+import { fetchDetailData, deleteActivityRequest } from '../../Redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
-import styles from './Detail.module.css'
+import styles from './Detail.module.css';
 
 function Detail() {
 	const detailData = useSelector((state) => state.detailData);
@@ -13,7 +13,9 @@ function Detail() {
 		dispatch(fetchDetailData(id));
 	}, [id, dispatch]);
 
-	console.log(detailData);
+	const deleteActivity = async (idActivity) => {
+		await dispatch(deleteActivityRequest(idActivity, detailData.id));
+	};
 
 	return (
 		<div>
@@ -34,8 +36,16 @@ function Detail() {
 					<p>SubRegion: {detailData.subregion}</p>
 					<p>Poblacion: {detailData.population}</p>
 					<div className={styles.activity}>
-						{detailData.Activities.map((activity, id) => (
-							<div key={id}>
+						{detailData.Activities.map((activity) => (
+							<div key={activity.id}>
+								<button
+									onClick={() => {
+										deleteActivity(activity.id);
+									}}>
+									{' '}
+									x{' '}
+								</button>
+
 								<p>Name: {activity.name}</p>
 								<p>Difficult: {activity.difficult}</p>
 								<p>Duration: {activity.duration}</p>
