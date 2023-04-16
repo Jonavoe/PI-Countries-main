@@ -9,15 +9,28 @@ function Home({ countries }) {
 	const [countriesPerPage] = useState(10);
 	const [searchValue, setSearchValue] = useState('');
 	const [verPaises, setVerPaises] = useState(true);
+	const [orderByAlphabet, setOrderByAlphabet] = useState(false);
 	const countryData = useSelector((state) => state.countryData);
 	const dispatch = useDispatch();
 
 	const indexOfLastCountry = currentPage * countriesPerPage;
 	const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
-	const currentCountries = countries.slice(
-		indexOfFirstCountry,
-		indexOfLastCountry
-	);
+
+	function sortCountriesAlphabetically(countries) {
+		const sortedCountries = [...countries].sort((a, b) =>
+			b.name.common.localeCompare(a.name.common)
+		);
+		return orderByAlphabet ? sortedCountries : sortedCountries.reverse();
+	}
+
+	const currentCountries = orderByAlphabet
+		? sortCountriesAlphabetically(countries).slice(
+				indexOfFirstCountry,
+				indexOfLastCountry
+		  )
+		: countries
+				.sort((a, b) => a.name.common.localeCompare(b.name.common))
+				.slice(indexOfFirstCountry, indexOfLastCountry);
 
 	const totalPages = Math.ceil(countries.length / countriesPerPage);
 
@@ -39,7 +52,9 @@ function Home({ countries }) {
 		setVerPaises(!verPaises);
 	}
 
-	console.log(countryData);
+	function handleSortAlphabetically() {
+		setOrderByAlphabet(!orderByAlphabet);
+	}
 	return (
 		<div className={styles.container}>
 			<button onClick={togglePaises}>Ver paises</button>
@@ -76,7 +91,7 @@ function Home({ countries }) {
 							<p>Continent: {countryData.continent}</p>
 							<p>SubRegion: {countryData.subregion}</p>
 							<p>Poblacion: {countryData.population}</p>
-							<div>
+							{/* <div>
 								{countryData.Activities.map((activity) => (
 									<div key={activity.name}>
 										<p>Name: {activity.name}</p>
@@ -85,13 +100,17 @@ function Home({ countries }) {
 										<p>Season: {activity.season}</p>
 									</div>
 								))}
-							</div>
+							</div> */}
 						</div>
 					))}
 			</div>
 			{!verPaises ? (
 				<div>
 					<h1>List of countries</h1>
+					<button onClick={handleSortAlphabetically}>
+						{orderByAlphabet ? 'Z-A' : 'A-Z'}
+					</button>
+
 					<div className={styles.countries}>
 						{currentCountries.map((country) => (
 							<div key={country.cca3}>

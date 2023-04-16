@@ -14,6 +14,11 @@ function Detail() {
 	}, [id, dispatch]);
 
 	const deleteActivity = async (idActivity) => {
+		const password = prompt('Ingrese su contraseña añadir el producto:');
+		if (password !== '1234') {
+			alert('Añadir producto ha sido cancelada.');
+			return;
+		}
 		await dispatch(deleteActivityRequest(idActivity, detailData.id));
 	};
 

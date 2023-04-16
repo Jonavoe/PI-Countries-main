@@ -9,6 +9,7 @@ function Form({ allCountries }) {
 	const [season, setSeason] = useState('verano');
 	const [selectedCountries, setSelectedCountries] = useState([]);
 	const [searchText, setSearchText] = useState('');
+	const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
 	const countries = allCountries.map((country) => {
 		return { cca3: country.cca3, name: country.name.common };
@@ -32,6 +33,8 @@ function Form({ allCountries }) {
 			});
 			const data = await response.json();
 			console.log(data);
+			setShowSuccessMessage(true);
+			setTimeout(() => setShowSuccessMessage(false), 2000);
 		} catch (error) {
 			console.error(error);
 		}
@@ -111,13 +114,15 @@ function Form({ allCountries }) {
 						multiple
 						value={selectedCountries}
 						onChange={handleCountryChange}>
-						{filteredCountries ? filteredCountries.map((country) => (
-							<option
-								key={country.cca3}
-								value={country.cca3}>
-								{country.name}
-							</option>
-						)): 'Cargando paises'}
+						{filteredCountries
+							? filteredCountries.map((country) => (
+									<option
+										key={country.cca3}
+										value={country.cca3}>
+										{country.name}
+									</option>
+							  ))
+							: 'Cargando paises'}
 					</select>
 					{selectedCountries.map((cca3) => (
 						<button
@@ -127,7 +132,10 @@ function Form({ allCountries }) {
 									selectedCountries.filter((c) => c !== cca3)
 								)
 							}>
-							{allCountries.find((country) => country.cca3 === cca3).name.common}{' '}
+							{
+								allCountries.find((country) => country.cca3 === cca3).name
+									.common
+							}{' '}
 							&times;
 						</button>
 					))}
@@ -142,6 +150,26 @@ function Form({ allCountries }) {
 					/>
 				</div>
 				<button type='submit'>Submit</button>
+				{showSuccessMessage && <p>Actividad agregada con éxito</p>}
+				{showSuccessMessage && (
+					<div>
+						<p>Name: {name}</p>
+						<p>Difficult: {difficult}</p>
+						<p>Duration: {duration}</p>
+						<p>Season: {season}</p>
+						<p>Countries:</p>
+						<ul>
+							{selectedCountries.map((cca3) => (
+								<li key={cca3}>
+									{
+										allCountries.find((country) => country.cca3 === cca3).name
+											.common
+									}
+								</li>
+							))}
+						</ul>
+					</div>
+				)}
 			</form>
 		</div>
 	);
