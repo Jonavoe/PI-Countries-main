@@ -1,6 +1,74 @@
+@import '../variables.css';
+
+.link {
+	text-decoration: none;
+}
+
+.containerEarth {
+	margin-bottom: 8rem;
+}
+
+.earth {
+	width: 20rem;
+	height: 20rem;
+	border-radius: 100%;
+	background-color: transparent;
+	animation: earth-rotation 36s linear infinite;
+	opacity: 90%;
+}
+.earth:hover {
+	box-shadow: 0 0 50px 5px rgb(254, 255, 206);
+}
+
+@media screen and (max-width: 768px) {
+	.earth {
+		width: 10rem;
+		height: 10rem;
+	}
+}
+
+@keyframes earth-rotation {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+	background-image: url('https://i.postimg.cc/P5ktMJY8/landing-BG.webp');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-end;
+	font-family: var(--font);
+	color: #301c00;
+}
+
+.landing {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin: 1rem;
+}
+
+.title {
+	font-size: 8rem;
+	margin: 0;
+	padding: 0;
+	border-bottom: 2px solid #301c00;
+}
+
+@media screen and (max-width: 768px) {
+	.title {
+		font-size: 3.5rem;
+		margin: 1.5rem 0;
+		border-bottom: 1px solid #301c00;
+	}
 }

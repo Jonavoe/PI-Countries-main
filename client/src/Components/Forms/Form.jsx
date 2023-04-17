@@ -12,7 +12,7 @@ function Form({ allCountries }) {
 	const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
 	const countries = allCountries.map((country) => {
-		return { cca3: country.cca3, name: country.name.common };
+		return { id: country.id, name: country.name };
 	});
 
 	const handleSubmit = async (event) => {
@@ -117,24 +117,24 @@ function Form({ allCountries }) {
 						{filteredCountries
 							? filteredCountries.map((country) => (
 									<option
-										key={country.cca3}
-										value={country.cca3}>
+										key={country.id}
+										value={country.id}>
 										{country.name}
 									</option>
 							  ))
 							: 'Cargando paises'}
 					</select>
-					{selectedCountries.map((cca3) => (
+					{selectedCountries.map((id) => (
 						<button
-							key={cca3}
+							key={id}
 							onClick={() =>
 								setSelectedCountries(
-									selectedCountries.filter((c) => c !== cca3)
+									selectedCountries.filter((c) => c !== id)
 								)
 							}>
 							{
-								allCountries.find((country) => country.cca3 === cca3).name
-									.common
+								allCountries.find((country) => country.id === id).name
+									
 							}{' '}
 							&times;
 						</button>
@@ -159,11 +159,10 @@ function Form({ allCountries }) {
 						<p>Season: {season}</p>
 						<p>Countries:</p>
 						<ul>
-							{selectedCountries.map((cca3) => (
-								<li key={cca3}>
+							{selectedCountries.map((id) => (
+								<li key={id}>
 									{
-										allCountries.find((country) => country.cca3 === cca3).name
-											.common
+										allCountries.find((country) => country.id === id).name
 									}
 								</li>
 							))}

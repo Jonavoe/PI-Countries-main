@@ -5,10 +5,20 @@ import { Link } from 'react-router-dom';
 function Landing() {
 	return (
 		<div className={styles.container}>
-			<h1>Landing</h1>
-			<Link to='/home'>
-				<button>Home Page</button>
-			</Link>
+			<div className={styles.landing}>
+				<div className={styles.containerEarth}>
+					<Link
+						className={styles.link}
+						to='/home'>
+						<img
+							className={styles.earth}
+							src='https://i.postimg.cc/GmXHvtvx/mundoBGR.png'
+							alt='earth'
+						/>
+					</Link>
+				</div>
+				<h1 className={styles.title}>Planeta Activo</h1>
+			</div>
 		</div>
 	);
 }
