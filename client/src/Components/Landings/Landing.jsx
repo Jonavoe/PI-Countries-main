@@ -10,11 +10,12 @@ function Landing() {
 					<Link
 						className={styles.link}
 						to='/home'>
-						<img
+						<div className={styles.world}></div>
+						{/* <img
 							className={styles.earth}
 							src='https://i.postimg.cc/GmXHvtvx/mundoBGR.png'
 							alt='earth'
-						/>
+						/> */}
 					</Link>
 				</div>
 				<h1 className={styles.title}>Planeta Activo</h1>
