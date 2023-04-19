@@ -3,10 +3,10 @@ import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCountries } from './Redux/actions';
-import Detail from './Components/Details/Detail';
-import Form from './Components/Forms/Form';
-import Home from './Components/Homes/Home';
-import Landing from './Components/Landings/Landing';
+import Detail from './Views/Details/Detail';
+import Form from './Views/Forms/Form';
+import Home from './Views/Homes/Home';
+import Landing from './Views/Landings/Landing';
 
 function App() {
 	const dispatch = useDispatch();

@@ -1,0 +1,119 @@
+h1 {
+	margin: 0.5rem;
+	font-size: 5rem;
+	text-shadow: 0 0 10px #444, 0 0 10px #444, 0 0 10px #444;
+}
+
+h2 {
+	font-size: 3rem;
+	margin: 0.5rem;
+	text-shadow: 0 0 10px #444, 0 0 10px #444, 0 0 10px #444;
+}
+
+.home {
+	margin: 1rem;
+	z-index: 1;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	color: white;
+}
+
+.countries {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: 2rem;
+	padding: 1rem;
+}
+
+.activity {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 2rem;
+}
+
+.fondo {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: -1;
+}
+
+.fondo img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/* .fondo {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 80vw;
+	z-index: -1;
+}
+
+.fondo img {
+	width: 100vw;
+	height: 80%;
+} */
+
+.bandera {
+	width: 40rem;
+	box-shadow: 0 0 1rem rgb(255, 255, 232);
+}
+
+.property {
+	display: flex;
+	gap: 3rem;
+	padding: 1rem;
+	margin: 1rem;
+}
+
+.text {
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	justify-content: center;
+	font-size: 1.7rem;
+	margin: 0.5rem;
+	text-shadow: 0 0 5px #444, 0 0 5px #444, 0 0 5px #444;
+}
+
+.home button {
+	font-size: 1.2rem;
+	color: white;
+	text-shadow: 0 0 5px #444, 0 0 5px #444, 0 0 5px #444;
+	padding: 0.5rem 3rem;
+	border: 2px solid rgb(255, 255, 232);
+	border-radius: 2rem;
+	background-color: transparent;
+}
+
+.home button:hover {
+	box-shadow: 0 0 1rem rgb(255, 255, 232);
+}
+
+.activity {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 1rem;
+}
+
+.activitiesCards {
+	display: flex;
+	gap: 1rem;
+}

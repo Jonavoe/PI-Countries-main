@@ -25,7 +25,7 @@ const saveApiData = async (req, res) => {
 			defaults: {
 				name: name.common || 'Unknown',
 				image: flags.png || 'https://via.placeholder.com/150',
-				continent: region|| 'Unknown',
+				continent: region || 'Unknown',
 				subregion: subregion || 'Unknown',
 				population: population || 0,
 				capital: capital?.[0] || 'Unknown',

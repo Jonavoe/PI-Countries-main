@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.countries {
+    display: flex;
+    flex-wrap: wrap; 
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.activity {
+    display: flex;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-image: url('https://i.postimg.cc/XvRBQggk/istockphoto-1404349414-1024x1024-transformed.jpg');
+    width: 55vw;
+    height: 20vh;
+    background-position: center;
+    border-radius: 10rem;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Form.module.css';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 function Form({ allCountries }) {
 	const [name, setName] = useState('');
@@ -18,23 +19,16 @@ function Form({ allCountries }) {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		try {
-			const response = await fetch('http://localhost:3001/activities', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({
-					name,
-					difficult,
-					duration,
-					season,
-					countries: selectedCountries,
-				}),
+			const response = await axios.post('http://localhost:3001/activities', {
+				name,
+				difficult,
+				duration,
+				season,
+				countries: selectedCountries,
 			});
-			const data = await response.json();
-			console.log(data);
+			console.log(response.data);
 			setShowSuccessMessage(true);
-			setTimeout(() => setShowSuccessMessage(false), 2000);
+			setTimeout(() => setShowSuccessMessage(false), 5000);
 		} catch (error) {
 			console.error(error);
 		}
@@ -128,15 +122,9 @@ function Form({ allCountries }) {
 						<button
 							key={id}
 							onClick={() =>
-								setSelectedCountries(
-									selectedCountries.filter((c) => c !== id)
-								)
+								setSelectedCountries(selectedCountries.filter((c) => c !== id))
 							}>
-							{
-								allCountries.find((country) => country.id === id).name
-									
-							}{' '}
-							&times;
+							{allCountries.find((country) => country.id === id).name} &times;
 						</button>
 					))}
 				</div>
@@ -161,9 +149,7 @@ function Form({ allCountries }) {
 						<ul>
 							{selectedCountries.map((id) => (
 								<li key={id}>
-									{
-										allCountries.find((country) => country.id === id).name
-									}
+									{allCountries.find((country) => country.id === id).name}
 								</li>
 							))}
 						</ul>

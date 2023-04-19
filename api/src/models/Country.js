@@ -34,5 +34,8 @@ module.exports = (sequelize) => {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 		},
+		banner: {
+			type: DataTypes.STRING,
+		},
 	});
 };

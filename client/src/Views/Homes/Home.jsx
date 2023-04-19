@@ -9,7 +9,6 @@ function Home({ countries }) {
 	const [countriesPerPage] = useState(10);
 	const countryData = useSelector((state) => state.countryData);
 	const [searchValue, setSearchValue] = useState('');
-	const [verPaises, setVerPaises] = useState(true);
 	const [sortAlphabetically, setSortAlphabetically] = useState('');
 	const [sortPopulation, setSortPopulation] = useState('');
 	const [sortRegion, setSortRegion] = useState('');
@@ -69,10 +68,6 @@ function Home({ countries }) {
 		setSearchValue(event.target.value);
 	}
 
-	function togglePaises() {
-		setVerPaises(!verPaises);
-	}
-
 	function handleSortAlphabetically(event) {
 		setSortAlphabetically(event.target.value);
 	}
@@ -92,7 +87,6 @@ function Home({ countries }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.nav}>
-				<button onClick={togglePaises}>Ver paises</button>
 				<Link to='/form'>
 					<button>Añadir actividad</button>
 				</Link>
@@ -126,99 +120,87 @@ function Home({ countries }) {
 								<p>Continent: {countryData.continent}</p>
 								<p>SubRegion: {countryData.subregion}</p>
 								<p>Poblacion: {countryData.population}</p>
-								{/* <div>
-								{countryData.Activities.map((activity) => (
-									<div key={activity.name}>
-										<p>Name: {activity.name}</p>
-										<p>Difficult: {activity.difficult}</p>
-										<p>Duration: {activity.duration}</p>
-										<p>Season: {activity.season}</p>
-									</div>
-								))}
-							</div> */}
 							</div>
 						))}
 				</div>
 			</div>
 			<div>
-				{!verPaises ? (
+				<div>
+					<h1>List of countries</h1>
 					<div>
-						<h1>List of countries</h1>
-						<div>
-							<label>
-								{' '}
-								Continent
-								<select onChange={handleSortRegion}>
-									<option value=''>--</option>
-									<option value={'asia'}>Asia</option>
-									<option value={'americas'}>Americas</option>
-									<option value={'oceania'}>Oceania</option>
-									<option value={'africa'}>Africa</option>
-									<option value={'europe'}>Europa</option>
-								</select>
-							</label>
-							<label onChange={handleSortActivity}>
-								{' '}
-								Activity:
-								<input placeholder='Busca tu actividad' />
-							</label>
-							<label>
-								{' '}
-								Alphabet
-								<select onChange={handleSortAlphabetically}>
-									<option value=''>--</option>
-									<option value='asc'>Ascendente</option>
-									<option value='desc'>Descendente</option>
-								</select>
-							</label>
-							<label>
-								{' '}
-								Population
-								<select onChange={handleSortPopulation}>
-									<option value=''>--</option>
-									<option value='asc'>Ascendente</option>
-									<option value='desc'>Descendente</option>
-								</select>
-							</label>
-						</div>
-						<div className={styles.countries}>
-							{currentCountries.map((country) => (
-								<div key={country.id}>
-									<Link to={`/detail/${country.id}`}>
-										<p>{country.name}</p>
-										<p>{country.continent}</p>
-										<img
-											src={country.image}
-											alt={country.name}
-										/>
-									</Link>
-								</div>
-							))}
-						</div>
-						<div className={styles.pagination}>
-							<button
-								onClick={() => handleClick(currentPage - 1)}
-								disabled={currentPage === 1}>
-								Previous
-							</button>
-							{Array.from({ length: totalPages }, (_, i) => i + 1).map(
-								(pageNumber) => (
-									<button
-										key={pageNumber}
-										onClick={() => handleClick(pageNumber)}
-										disabled={currentPage === pageNumber}>
-										{pageNumber}
-									</button>
-								)
-							)}
-							<button
-								onClick={() => handleClick(currentPage + 1)}
-								disabled={currentPage === totalPages}>
-								Next
-							</button>
-						</div>
+						<label>
+							{' '}
+							Continent
+							<select onChange={handleSortRegion}>
+								<option value=''>--</option>
+								<option value={'asia'}>Asia</option>
+								<option value={'americas'}>Americas</option>
+								<option value={'oceania'}>Oceania</option>
+								<option value={'africa'}>Africa</option>
+								<option value={'europe'}>Europa</option>
+							</select>
+						</label>
+						<label onChange={handleSortActivity}>
+							{' '}
+							Activity:
+							<input placeholder='Busca tu actividad' />
+						</label>
+						<label>
+							{' '}
+							Alphabet
+							<select onChange={handleSortAlphabetically}>
+								<option value=''>--</option>
+								<option value='asc'>Ascendente</option>
+								<option value='desc'>Descendente</option>
+							</select>
+						</label>
+						<label>
+							{' '}
+							Population
+							<select onChange={handleSortPopulation}>
+								<option value=''>--</option>
+								<option value='asc'>Ascendente</option>
+								<option value='desc'>Descendente</option>
+							</select>
+						</label>
 					</div>
-				) : null}
+					<div className={styles.countries}>
+						{currentCountries.map((country) => (
+							<div key={country.id}>
+								<Link to={`/detail/${country.id}`}>
+									<p>{country.name}</p>
+									<p>{country.continent}</p>
+									<img
+										src={country.image}
+										alt={country.name}
+									/>
+								</Link>
+							</div>
+						))}
+					</div>
+					<div className={styles.pagination}>
+						<button
+							onClick={() => handleClick(currentPage - 1)}
+							disabled={currentPage === 1}>
+							Previous
+						</button>
+						{Array.from({ length: totalPages }, (_, i) => i + 1).map(
+							(pageNumber) => (
+								<button
+									key={pageNumber}
+									onClick={() => handleClick(pageNumber)}
+									disabled={currentPage === pageNumber}>
+									{pageNumber}
+								</button>
+							)
+						)}
+						<button
+							onClick={() => handleClick(currentPage + 1)}
+							disabled={currentPage === totalPages}>
+							Next
+						</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	);
