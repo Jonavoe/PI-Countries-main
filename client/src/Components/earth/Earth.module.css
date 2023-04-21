@@ -7,14 +7,16 @@
 	background: url('https://i.postimg.cc/XvRBQggk/istockphoto-1404349414-1024x1024-transformed.jpg');
 	background-size: cover;
 	box-shadow: inset 0 0 20px #000, inset -40px -10px 20px rgba(3, 32, 56, 0.7);
+	margin-right: 3rem;
 
 	animation: world 250s linear infinite;
 }
 
 @media screen and (max-width: 768px) {
 	.world {
-		width: 200px;
-		height: 200px;
+		width: 300px;
+		height: 300px;
+		margin-right: 2rem;
 	}
 }
 

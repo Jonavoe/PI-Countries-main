@@ -1,0 +1,90 @@
+.nav {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+	border-radius: 50%;
+	background: url('https://i.postimg.cc/XvRBQggk/istockphoto-1404349414-1024x1024-transformed.jpg');
+	background-size: cover;
+	box-shadow: inset 0 0 20px #000, inset -40px -10px 20px rgba(3, 32, 56, 0.7);
+	background-position: center center;
+	animation: world 200s linear infinite;
+	width: 65vw;
+	height: 15vh;
+	border-radius: 10rem;
+	margin-top: 1rem;
+	padding: .5rem;
+}
+@media screen and (max-width: 768px) {
+	.world {
+		width: 200px;
+		height: 200px;
+	}
+}
+
+@keyframes world {
+	0% {
+		background-position-x: 200;
+	}
+	100% {
+		background-position-x: -1000px;
+	}
+}
+.home {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.home button {
+	font-size: 1.2rem;
+	color: white;
+	text-shadow: 0 0 5px #444, 0 0 5px #444, 0 0 5px #444;
+	padding: 0.3rem 3rem;
+	border: 2px solid rgb(255, 255, 232);
+	border-radius: 2rem;
+	background-color: transparent;
+}
+
+.home button:hover {
+	box-shadow: 0 0 1rem rgb(255, 255, 232);
+}
+
+
+.input {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	font-size: 2;
+	color: #fff;
+	text-shadow: 0 0 5px #444, 0 0 5px #444, 0 0 5px #444;
+}
+.input input {
+	width: 25rem;
+	font-size: 1.2rem;
+	color: #fff;
+	text-shadow: 0 0 5px #444, 0 0 5px #444, 0 0 5px #444;
+	padding: 0.5rem 0.5rem;
+	border: 2px solid rgb(255, 255, 232);
+	border-radius: 2rem;
+	background-color: transparent;
+}
+.input input::placeholder {
+	color: #fff;
+}
+
+
+.filter {
+	font-size: 1.2rem;
+	color: white;
+	text-shadow: 0 0 5px #444, 0 0 5px #444, 0 0 5px #444;
+	padding: 0.3rem 4.8rem;
+	border: 2px solid rgb(255, 255, 232);
+	border-radius: 2rem;
+	background-color: transparent;
+}
+
+.filter:hover {
+	box-shadow: 0 0 1rem rgb(255, 255, 232);
+}

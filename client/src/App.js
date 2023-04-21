@@ -7,6 +7,7 @@ import Detail from './Views/Details/Detail';
 import Form from './Views/Forms/Form';
 import Home from './Views/Homes/Home';
 import Landing from './Views/Landings/Landing';
+import Activities from './Views/Activities/Activities';
 
 function App() {
 	const dispatch = useDispatch();
@@ -34,6 +35,10 @@ function App() {
 				<Route
 					path='/detail/:id'
 					element={<Detail countries={countries} />}
+				/>
+				<Route
+					path='/activities/:id'
+					element={<Activities countries={countries} />}
 				/>
 			</Routes>
 		</div>

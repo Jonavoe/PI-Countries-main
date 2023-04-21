@@ -1,0 +1,75 @@
+.card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	height: 400px;
+	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+	width: 22rem;
+	height: 22rem;
+	border-radius: 2rem;
+	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='396' height='396' preserveAspectRatio='none' viewBox='0 0 396 396'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1042%26quot%3b)' fill='none'%3e%3crect width='396' height='396' x='0' y='0' fill='rgba(10%2c 37%2c 65%2c 1)'%3e%3c/rect%3e%3cpath d='M45 396L441 0L726 0L330 396z' fill='url(%23SvgjsLinearGradient1043)'%3e%3c/path%3e%3cpath d='M348 396L-48 0L-405 0L-9 396z' fill='url(%23SvgjsLinearGradient1044)'%3e%3c/path%3e%3cpath d='M160.07906270936232 396L396 160.07906270936232L396 396z' fill='url(%23SvgjsLinearGradient1043)'%3e%3c/path%3e%3cpath d='M0 396L235.92093729063768 396L 0 160.07906270936232z' fill='url(%23SvgjsLinearGradient1044)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1042'%3e%3crect width='396' height='396' fill='white'%3e%3c/rect%3e%3c/mask%3e%3clinearGradient x1='0%25' y1='100%25' x2='100%25' y2='0%25' id='SvgjsLinearGradient1043'%3e%3cstop stop-color='rgba(34%2c 255%2c 5%2c 0.2)' offset='0'%3e%3c/stop%3e%3cstop stop-opacity='0' stop-color='rgba(34%2c 255%2c 5%2c 0.2)' offset='0.66'%3e%3c/stop%3e%3c/linearGradient%3e%3clinearGradient x1='100%25' y1='100%25' x2='0%25' y2='0%25' id='SvgjsLinearGradient1044'%3e%3cstop stop-color='rgba(34%2c 255%2c 5%2c 0.2)' offset='0'%3e%3c/stop%3e%3cstop stop-opacity='0' stop-color='rgba(34%2c 255%2c 5%2c 0.2)' offset='0.66'%3e%3c/stop%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e");
+}
+
+.card:hover {
+	box-shadow: 0px 0px 15px rgb(255, 255, 232);
+}
+
+.card img {
+	border-radius: 10px;
+	border: 1px solid white;
+	max-width: 20rem;
+	max-height: 16rem;
+}
+.card h3 {
+	font-size: 2rem;
+	font-weight: bold;
+	margin: 0.1rem;
+}
+
+.card h4 {
+	font-size: 1.5rem;
+	font-weight: normal;
+	margin: 0.1rem;
+}
+
+.containerImage {
+	position: relative;
+	transition: all 0.3s ease;
+}
+
+.containerImage:hover {
+	transform: perspective(250px) rotateX(10deg) translateY(-5%) translateZ(0);
+}
+.containerImage::before {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	height: 100%;
+	width: 100%;
+	border-radius: 1rem;
+	background-image: linear-gradient(
+		to bottom,
+		transparent 10%,
+		rgba(0, 0, 0, 0.5) 50%,
+		rgba(0, 0, 0) 95%
+	);
+	opacity: 0;
+	transition: all 0.3s ease;
+}
+.containerImage:hover::before {
+	opacity: 1;
+}
+
+.containerImage .messi {
+	position: absolute;
+	border: none;
+	width: 8rem;
+	bottom: 0;
+	right: 30%;
+	transition: 0.3s ease;
+	opacity: 0;
+}
+.containerImage:hover .messi {
+	opacity: 1;
+}
