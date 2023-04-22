@@ -50,9 +50,9 @@
 	border-radius: 1rem;
 	background-image: linear-gradient(
 		to bottom,
-		transparent 10%,
+		transparent 1%,
 		rgba(0, 0, 0, 0.5) 50%,
-		rgba(0, 0, 0) 95%
+		rgba(0, 0, 0, .6) 95%
 	);
 	opacity: 0;
 	transition: all 0.3s ease;
