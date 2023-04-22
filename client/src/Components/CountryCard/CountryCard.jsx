@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import styles from './CountryCard.module.css';
 
 function CountryCard({ country }) {
-	const [imagen, setImagen] = useState(false);
+	const [setImagen] = useState(false);
 	return (
 		<div className={styles.card}>
 			<h3>Pais: {country.name}</h3>
 			<h4>Continent: {country.continent}</h4>
-			<div className={styles.containerImage}>
-				<Link to={`/detail/${country.id}`}>
+			<Link to={`/detail/${country.id}`}>
+				<div className={styles.containerImage}>
 					<img
 						onMouseEnter={() => setImagen(true)}
 						onMouseLeave={() => setImagen(false)}
@@ -24,8 +24,8 @@ function CountryCard({ country }) {
 							alt='messi'
 						/>
 					) : null}
-				</Link>
-			</div>
+				</div>
+			</Link>
 		</div>
 	);
 }

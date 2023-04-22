@@ -43,7 +43,7 @@ function Form({ allCountries }) {
 			}
 			// const response = await axios.post('http://localhost:3001/activities', {
 			const response = await axios.post(
-				'https://containers-us-west-126.railway.app/activities',
+				'https://pi-countries-main-production-3180.up.railway.app/activities',
 				{
 					name,
 					difficult,
