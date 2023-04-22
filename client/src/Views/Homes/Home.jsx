@@ -22,33 +22,35 @@ function Home({ countries }) {
 	const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
 
 	// Filter countries based on searchValue and sort criteria
-	const filteredCountries = countries
-		.filter((country) =>
-			country.name.toLowerCase().includes(searchValue.toLowerCase())
-		)
-		.filter(
-			(country) =>
-				sortRegion === '' || country.continent.toLowerCase() === sortRegion
-		)
-		.filter((country) =>
-			sortActivity === ''
-				? true
-				: country.Activities.some((activity) =>
-						activity.name.toLowerCase().includes(sortActivity)
-				  )
-		)
-		.sort((a, b) => {
-			if (sortAlphabetically === 'asc') {
-				return a.name.localeCompare(b.name);
-			} else if (sortAlphabetically === 'desc') {
-				return b.name.localeCompare(a.name);
-			} else if (sortPopulation === 'asc') {
-				return a.population - b.population;
-			} else if (sortPopulation === 'desc') {
-				return b.population - a.population;
-			}
-			return 0;
-		});
+	const filteredCountries = Array.isArray(countries)
+		? countries
+				.filter((country) =>
+					country.name.toLowerCase().includes(searchValue.toLowerCase())
+				)
+				.filter(
+					(country) =>
+						sortRegion === '' || country.continent.toLowerCase() === sortRegion
+				)
+				.filter((country) =>
+					sortActivity === ''
+						? true
+						: country.Activities.some((activity) =>
+								activity.name.toLowerCase().includes(sortActivity)
+						  )
+				)
+				.sort((a, b) => {
+					if (sortAlphabetically === 'asc') {
+						return a.name.localeCompare(b.name);
+					} else if (sortAlphabetically === 'desc') {
+						return b.name.localeCompare(a.name);
+					} else if (sortPopulation === 'asc') {
+						return a.population - b.population;
+					} else if (sortPopulation === 'desc') {
+						return b.population - a.population;
+					}
+					return 0;
+				})
+		: [];
 
 	const currentCountries = filteredCountries.slice(
 		indexOfFirstCountry,
@@ -90,7 +92,7 @@ function Home({ countries }) {
 	console.log(sortActivity);
 
 	function filterOn() {
-		setFilter(!filter)
+		setFilter(!filter);
 	}
 
 	return (
@@ -101,13 +103,14 @@ function Home({ countries }) {
 				searchValue={searchValue}
 				filterOn={filterOn}
 			/>
-			 {filter ?
-			<Filters
-				handleSortRegion={handleSortRegion}
-				handleSortActivity={handleSortActivity}
-				handleSortAlphabetically={handleSortAlphabetically}
-				handleSortPopulation={handleSortPopulation}
-			/>:null}
+			{filter ? (
+				<Filters
+					handleSortRegion={handleSortRegion}
+					handleSortActivity={handleSortActivity}
+					handleSortAlphabetically={handleSortAlphabetically}
+					handleSortPopulation={handleSortPopulation}
+				/>
+			) : null}
 			<CountryList currentCountries={currentCountries} />
 			<Pagination
 				currentPage={currentPage}

@@ -21,9 +21,12 @@ function Form({ allCountries }) {
 		countries: false,
 	});
 
-	const countries = allCountries.map((country) => {
-		return { id: country.id, name: country.name };
-	});
+	const countries =
+		Array.isArray(allCountries) && allCountries.length > 0
+			? allCountries.map((country) => {
+					return { id: country.id, name: country.name };
+			  })
+			: [];
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
@@ -38,13 +41,17 @@ function Form({ allCountries }) {
 				alert('Please fill in all the fields');
 				throw new Error('Please fill in all the fields');
 			}
-			const response = await axios.post('http://localhost:3001/activities', {
-				name,
-				difficult,
-				duration,
-				season,
-				countries: selectedCountries,
-			});
+			// const response = await axios.post('http://localhost:3001/activities', {
+			const response = await axios.post(
+				'https://containers-us-west-126.railway.app/activities',
+				{
+					name,
+					difficult,
+					duration,
+					season,
+					countries: selectedCountries,
+				}
+			);
 			console.log(response.data);
 			setShowSuccessMessage(true);
 			setTimeout(() => setShowSuccessMessage(false), 3000);
@@ -123,7 +130,9 @@ function Form({ allCountries }) {
 										setValidations({ ...validations, difficult: true });
 									}
 								}}
-								className={validations.difficult ? styles.valid : styles.invalid}
+								className={
+									validations.difficult ? styles.valid : styles.invalid
+								}
 							/>
 						</div>
 						<div className={styles.input}>
@@ -158,8 +167,7 @@ function Form({ allCountries }) {
 										setValidations({ ...validations, season: true });
 									}
 								}}
-								className={validations.season ? styles.valid : styles.invalid}
-								>
+								className={validations.season ? styles.valid : styles.invalid}>
 								<option value='--'>--</option>
 								<option value='verano'>Summer</option>
 								<option value='invierno'>Winter</option>
@@ -189,12 +197,17 @@ function Form({ allCountries }) {
 								onChange={handleCountryChange}
 								onBlur={() => {
 									if (!selectedCountries) {
-										setValidations({ ...validations, selectedCountries: false });
+										setValidations({
+											...validations,
+											selectedCountries: false,
+										});
 									} else {
 										setValidations({ ...validations, selectedCountries: true });
 									}
 								}}
-								className={validations.selectedCountries ? styles.valid : styles.invalid}>
+								className={
+									validations.selectedCountries ? styles.valid : styles.invalid
+								}>
 								{filteredCountries
 									? filteredCountries.map((country) => (
 											<option
