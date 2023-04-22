@@ -19,7 +19,8 @@ export const setCountries = (countries) => ({
 export const fetchCountries = () => {
 	return (dispatch) => {
 		return axios
-			.get('http://localhost:3001/countries')
+			// .get('http://localhost:3001/countries')
+			.get('containers-us-west-126.railway.app/countries')
 			.then((response) => {
 				const countries = response.data;
 				dispatch(setCountries(countries));
@@ -39,7 +40,8 @@ export const fetchCountryData = (searchValue) => {
 	return (dispatch) => {
 		dispatch({ type: FETCH_COUNTRY_REQUEST });
 		axios
-			.get(`http://localhost:3001/countries/name/?name=${searchValue}`)
+			// .get(`http://localhost:3001/countries/name/?name=${searchValue}`)
+			.get(`containers-us-west-126.railway.app/countries/name/?name=${searchValue}`)
 			.then((response) => {
 				const countryData = response.data;
 				dispatch(fetchCountrySuccess(countryData));

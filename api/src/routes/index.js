@@ -8,13 +8,9 @@ const { saveApiData } = require('../controllers/getApiData');
 const { getAllActivities } = require('../controllers/getAllActivities');
 const { deleteActivity } = require('../controllers/deleteActivity');
 
-// Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
 
 const router = Router();
 
-// Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
 saveApiData();
 
 router.get('/', async (req, res) => {
