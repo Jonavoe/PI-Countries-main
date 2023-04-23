@@ -33,7 +33,14 @@ label {
 .input .invalid {
 	border: 2px solid #a20000;
 }
+
 .container {
+	opacity: 0;
+	transition: opacity 0.5s ease-in-out;
+}
+
+.container.show {
+	opacity: 1;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -126,7 +133,6 @@ label {
 	border-radius: 2rem;
 	background-color: transparent;
 }
-
 
 .inputSeason .valid {
 	border: 2px solid #00a200;
@@ -260,5 +266,3 @@ label {
 	align-items: flex-start;
 	justify-content: flex-start;
 }
-
-

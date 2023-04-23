@@ -28,6 +28,12 @@ h2 {
 }
 
 .container {
+	opacity: 0;
+	transition: opacity 0.5s ease-in-out;
+}
+
+.container.show {
+	opacity: 1;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -164,4 +170,11 @@ h2 {
 }
 .text p {
 	margin: 0;
+}
+
+@media screen and (max-width: 1024px) {
+	.home button {
+		font-size: 1rem;
+		padding: 0.5rem 2rem;
+	}
 }

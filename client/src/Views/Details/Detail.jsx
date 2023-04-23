@@ -1,10 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { fetchDetailData } from '../../Redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './Detail.module.css';
 
 function Detail() {
+	const [show, setShow] = useState(false);
+
+	useEffect(() => {
+		const timeout = setTimeout(() => {
+			setShow(true);
+		}, 500);
+		return () => {
+			clearTimeout(timeout);
+		};
+	}, []);
+
 	const detailData = useSelector((state) => state.detailData);
 	const dispatch = useDispatch();
 	const { id } = useParams();
@@ -14,14 +25,16 @@ function Detail() {
 	}, [id, dispatch]);
 
 	return (
-		<div className={styles.container}>
+		<div className={`${styles.container} ${show ? styles.show : ''}`}>
 			<div className={styles.home}>
 				<Link to='/home'>
 					<button>Home</button>
 				</Link>
-				<Link to={`/activities/${id}`}>
-					<button>Activities {detailData && detailData.name}</button>
-				</Link>
+				{detailData && detailData.Activities.length === 0 ? null : (
+					<Link to={`/activities/${id}`}>
+						<button>Activities {detailData && detailData.name}</button>
+					</Link>
+				)}
 			</div>
 			{detailData && (
 				<div className={styles.detailCards}>
@@ -38,10 +51,12 @@ function Detail() {
 						</div>
 						<div className={styles.text}>
 							<h2>
-								🌍 Ubicado en el continente {detailData.continent} y la
-								subregión de {detailData.subregion}. Tiene una 👥 población de{' '}
-								{detailData.population} habitantes y su capital es{' '}
-								{detailData.capital}.
+								🌍 Located in the {detailData.continent} continent and the{' '}
+								{detailData.subregion} subregion.
+							</h2>
+							<h2>
+								It has a 👥 population of {detailData.population} inhabitants
+								and its capital is {detailData.capital}.
 							</h2>
 						</div>
 					</div>

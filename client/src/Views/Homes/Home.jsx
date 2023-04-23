@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Home.module.css';
 import { useDispatch } from 'react-redux';
 import { fetchCountryData } from '../../Redux/actions';
@@ -8,6 +8,16 @@ import CountryList from '../../Components/CountryList/CountryList';
 import Pagination from '../../Components/Pagination/Pagination';
 
 function Home({ countries }) {
+	const [show, setShow] = useState(false);
+
+	useEffect(() => {
+		const timeout = setTimeout(() => {
+			setShow(true);
+		}, 500);
+		return () => {
+			clearTimeout(timeout);
+		};
+	}, []);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [countriesPerPage] = useState(10);
 	const [searchValue, setSearchValue] = useState('');
@@ -96,7 +106,7 @@ function Home({ countries }) {
 	}
 
 	return (
-		<div className={styles.container}>
+		<div className={`${styles.container} ${show ? styles.show : ''}`}>
 			<Header
 				handleFormSubmit={handleFormSubmit}
 				handleInputChange={handleInputChange}

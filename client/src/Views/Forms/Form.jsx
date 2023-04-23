@@ -1,9 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Form.module.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 function Form({ allCountries }) {
+	const [show, setShow] = useState(false);
+
+	useEffect(() => {
+		const timeout = setTimeout(() => {
+			setShow(true);
+		}, 500);
+		return () => {
+			clearTimeout(timeout);
+		};
+	}, []);
+
 	const [name, setName] = useState('');
 	const [difficult, setDifficult] = useState();
 	const [duration, setDuration] = useState();
@@ -87,7 +98,7 @@ function Form({ allCountries }) {
 	);
 
 	return (
-		<div className={styles.container}>
+		<div className={`${styles.container} ${show ? styles.show : ''}`}>
 			<div className={styles.home}>
 				<Link to='/home'>
 					<button>Home Page</button>

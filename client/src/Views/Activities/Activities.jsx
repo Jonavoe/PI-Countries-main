@@ -1,10 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { fetchDetailData, deleteActivityRequest } from '../../Redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './Activities.module.css';
 
 function Activities() {
+	const [show, setShow] = useState(false);
+
+	useEffect(() => {
+		const timeout = setTimeout(() => {
+			setShow(true);
+		}, 500);
+		return () => {
+			clearTimeout(timeout);
+		};
+	}, []);
+
 	const detailData = useSelector((state) => state.detailData);
 	const dispatch = useDispatch();
 	const { id } = useParams();
@@ -24,7 +35,7 @@ function Activities() {
 	};
 
 	return (
-		<div className={styles.container}>
+		<div className={`${styles.container} ${show ? styles.show : ''}`}>
 			<div className={styles.home}>
 				<Link to='/home'>
 					<button>Home</button>
