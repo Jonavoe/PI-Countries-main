@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from './CountryCard.module.css';
 
 function CountryCard({ country }) {
-	const [setImagen] = useState(false);
+	const [imagen, setImagen] = useState(false);
 	return (
 		<div className={styles.card}>
 			<h3>Pais: {country.name}</h3>
