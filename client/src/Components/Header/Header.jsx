@@ -2,7 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Header.module.css';
 
-function Header({ handleFormSubmit, handleInputChange, searchValue,filterOn }) {
+function Header({
+	handleFormSubmit,
+	handleInputChange,
+	searchValue,
+	filterOn,
+}) {
 	return (
 		<div className={styles.nav}>
 			<div className={styles.home}>
@@ -23,7 +28,11 @@ function Header({ handleFormSubmit, handleInputChange, searchValue,filterOn }) {
 					<button>Add activity</button>
 				</Link>
 			</div>
-					<button className={styles.filter} onClick={filterOn}>Filter</button>
+			<button
+				className={styles.filter}
+				onClick={filterOn}>
+				Filter
+			</button>
 		</div>
 	);
 }

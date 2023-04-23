@@ -10,7 +10,7 @@ function CountryCard({ country }) {
 			<h4>Continent: {country.continent}</h4>
 			<Link to={`/detail/${country.id}`}>
 				<div className={styles.containerImage}>
-					<img
+					<img className={styles.bandera}
 						onMouseEnter={() => setImagen(true)}
 						onMouseLeave={() => setImagen(false)}
 						src={country.image}

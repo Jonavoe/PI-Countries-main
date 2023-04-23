@@ -8,7 +8,7 @@ function Landing() {
 			<div className={styles.containerEarth}>
 				<Earth />
 			</div>
-			<h1 className={styles.title}>Planeta Activo</h1>
+			<h1 className={styles.title}>Actived Planet</h1>
 		</div>
 	);
 }

@@ -27,11 +27,11 @@ label {
 }
 
 .input .valid {
-	border: 2px solid green;
+	border: 2px solid #00a200;
 }
 
 .input .invalid {
-	border: 2px solid red;
+	border: 2px solid #a20000;
 }
 .container {
 	display: flex;
@@ -129,11 +129,11 @@ label {
 
 
 .inputSeason .valid {
-	border: 2px solid green;
+	border: 2px solid #00a200;
 }
 
 .inputSeason .invalid {
-	border: 2px solid red;
+	border: 2px solid #a20000;
 }
 .inputSeason option {
 	color: black;
@@ -146,11 +146,11 @@ label {
 }
 
 .inputCountries .valid {
-	border: 2px solid green;
+	border: 2px solid #00a200;
 }
 
 .inputCountries .invalid {
-	border: 2px solid red;
+	border: 2px solid #a20000;
 }
 .inputCountries input {
 	font-size: 1.2rem;
@@ -166,7 +166,7 @@ label {
 	background-color: transparent;
 }
 .inputCountries option:checked {
-	color: #33ff00;
+	color: #00a200;
 }
 
 .inputCountries select {

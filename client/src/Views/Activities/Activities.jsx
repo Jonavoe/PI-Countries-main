@@ -45,16 +45,19 @@ function Activities() {
 								<div
 									className={styles.activityCards}
 									key={activity.id}>
+									<div className={styles.text}>
+										<p>Name: {activity.name}</p>
+										<p>Difficult: {activity.difficult}</p>
+										<p>Duration: {activity.duration}</p>
+										<p>Season: {activity.season}</p>
+									</div>
 									<button
+										className={styles.btn}
 										onClick={() => {
 											deleteActivity(activity.id);
 										}}>
-										X
+										Delete Activity
 									</button>
-									<p>Name: {activity.name}</p>
-									<p>Difficult: {activity.difficult}</p>
-									<p>Duration: {activity.duration}</p>
-									<p>Season: {activity.season}</p>
 								</div>
 							))}
 						</div>
