@@ -109,7 +109,7 @@ function Form({ allCountries }) {
 				<form onSubmit={handleSubmit}>
 					<div className={styles.containerInput}>
 						<div className={styles.input}>
-							<label htmlFor='name'>Name:</label>
+							<label htmlFor='name'>Name</label>
 							<input
 								type='text'
 								id='name'
@@ -126,7 +126,7 @@ function Form({ allCountries }) {
 							/>
 						</div>
 						<div className={styles.input}>
-							<label htmlFor='difficult'>Difficult min 1 max 5:</label>
+							<label htmlFor='difficult'>Difficult min 1 max 5</label>
 							<input
 								type='number'
 								id='difficult'
@@ -147,7 +147,7 @@ function Form({ allCountries }) {
 							/>
 						</div>
 						<div className={styles.input}>
-							<label htmlFor='duration'>Duration 1hs a 24hs:</label>
+							<label htmlFor='duration'>Duration 1hs a 24hs</label>
 							<input
 								type='number'
 								id='duration'
@@ -166,7 +166,7 @@ function Form({ allCountries }) {
 							/>
 						</div>
 						<div className={styles.inputSeason}>
-							<label htmlFor='season'>Season:</label>
+							<label htmlFor='season'>Season</label>
 							<select
 								id='season'
 								value={season}
@@ -189,7 +189,7 @@ function Form({ allCountries }) {
 					</div>
 
 					<div className={styles.input}>
-						<label htmlFor='searchText'>Search Country:</label>
+						<label htmlFor='searchText'>Search Country</label>
 						<input
 							type='text'
 							id='searchText'

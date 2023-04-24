@@ -44,7 +44,7 @@ label {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: flex-start;
+	justify-content: center;
 	color: white;
 }
 
@@ -76,7 +76,7 @@ label {
 	display: flex;
 	flex-direction: column;
 	gap: 0.5rem;
-	align-items: flex-start;
+	align-items: center;
 	justify-content: center;
 	margin-bottom: 1rem;
 	font-size: 1.5rem;
@@ -85,7 +85,8 @@ label {
 .input {
 	display: flex;
 	flex-direction: column;
-	align-items: flex-start;
+	align-items: center;
+	justify-content: center;
 	font-size: 2;
 	color: white;
 	text-shadow: 0 0 5px #444, 0 0 5px #444, 0 0 5px #444;
@@ -101,10 +102,16 @@ label {
 	background-color: transparent;
 }
 
+@media screen and (max-width: 1024px) {
+	.input input {
+		width: 18rem;
+	}
+}
+
 .inputSeason {
 	display: flex;
 	flex-direction: column;
-	align-items: flex-start;
+	align-items: center;
 	font-size: 2;
 	color: white;
 	text-shadow: 0 0 5px #444, 0 0 5px #444, 0 0 5px #444;
@@ -134,6 +141,12 @@ label {
 	background-color: transparent;
 }
 
+@media screen and (max-width: 1024px) {
+	.inputSeason select {
+		width: 19.5rem;
+	}
+}
+
 .inputSeason .valid {
 	border: 2px solid #00a200;
 }
@@ -148,7 +161,8 @@ label {
 .inputCountries {
 	display: flex;
 	flex-direction: column;
-	align-items: flex-start;
+	align-items: center;
+	justify-content: center;
 }
 
 .inputCountries .valid {
@@ -185,6 +199,13 @@ label {
 	background-color: transparent;
 	width: 26rem;
 }
+
+@media screen and (max-width: 1024px) {
+	.inputCountries select {
+		width: 20rem;
+	}
+}
+
 .inputCountries option {
 	color: white;
 }
@@ -196,7 +217,13 @@ label {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 0.5rem;
-	max-width: 30rem;
+	width: 30rem;
+}
+
+@media screen and (max-width: 1024px) {
+	.countries {
+		width: 20rem;
+	}
 }
 
 .countries button {
@@ -226,6 +253,7 @@ label {
 	position: fixed;
 	top: 50%;
 	left: 50%;
+	opacity: .9;
 	transform: translate(-50%, -50%);
 	display: flex;
 	flex-direction: column;
@@ -237,12 +265,25 @@ label {
 	width: 30rem;
 	height: 30rem;
 }
+
+@media screen and (max-width: 1024px) {
+	.alert {
+		width: 20rem;
+		height: 25rem;
+	}
+}
 .alert p {
 	font-size: 2rem;
 	color: white;
 	text-shadow: 0 0 5px #444, 0 0 5px #444, 0 0 5px #444;
 	margin: 0.2rem;
 	padding: 0;
+}
+
+@media screen and (max-width: 1024px) {
+	.alert p {
+		font-size: 1.4rem;
+	}
 }
 .alert h2 {
 	font-size: 2rem;
