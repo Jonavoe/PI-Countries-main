@@ -16,8 +16,8 @@ function Form({ allCountries }) {
 	}, []);
 
 	const [name, setName] = useState('');
-	const [difficult, setDifficult] = useState();
-	const [duration, setDuration] = useState();
+	const [difficult, setDifficult] = useState(1);
+	const [duration, setDuration] = useState(1);
 	const [season, setSeason] = useState();
 	const [selectedCountries, setSelectedCountries] = useState([]);
 	const [searchText, setSearchText] = useState('');

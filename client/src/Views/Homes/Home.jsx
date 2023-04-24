@@ -31,7 +31,6 @@ function Home({ countries }) {
 	const indexOfLastCountry = currentPage * countriesPerPage;
 	const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
 
-	// Filter countries based on searchValue and sort criteria
 	const filteredCountries = Array.isArray(countries)
 		? countries
 				.filter((country) =>
@@ -45,8 +44,7 @@ function Home({ countries }) {
 					sortActivity === ''
 						? true
 						: country.Activities.some((activity) =>
-								activity.name.toLowerCase().includes(sortActivity)
-						  )
+								activity.name.toLowerCase().includes(sortActivity))
 				)
 				.sort((a, b) => {
 					if (sortAlphabetically === 'asc') {
@@ -99,7 +97,6 @@ function Home({ countries }) {
 		setSortActivity(event.target.value.toLowerCase());
 	}
 
-	console.log(sortActivity);
 
 	function filterOn() {
 		setFilter(!filter);

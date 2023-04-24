@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Filters.module.css';
+import { useSelector } from 'react-redux';
 
 function Filters({
 	handleSortRegion,
@@ -7,6 +8,17 @@ function Filters({
 	handleSortAlphabetically,
 	handleSortPopulation,
 }) {
+	const countries = useSelector((state) => state.countries);
+	const activities = countries.map((country) => country.Activities).flat();
+	const uniqueActivities = Object.values(
+		activities.reduce((acc, activity) => {
+			if (!acc[activity.name]) {
+				acc[activity.name] = activity;
+			}
+			return acc;
+		}, {})
+	);
+
 	return (
 		<div className={styles.containerInput}>
 			<div className={styles.input}>
@@ -22,10 +34,21 @@ function Filters({
 			</div>
 			<div className={styles.input}>
 				<label>Activity</label>
-				<input
-					onChange={handleSortActivity}
-					placeholder='Busca tu actividad'
-				/>
+				<div className={styles.activitiesCards}>
+					<select
+						onChange={handleSortActivity}
+						value=''>
+						<option value=''>--</option>
+						{countries &&
+							uniqueActivities.map((activity) => (
+								<option
+									key={activity.id}
+									value={activity.name}>
+									{activity.name}
+								</option>
+							))}
+					</select>
+				</div>
 			</div>
 			<div className={styles.input}>
 				<label>Alphabet</label>
