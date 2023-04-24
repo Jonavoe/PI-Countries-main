@@ -114,7 +114,7 @@ function Form({ allCountries }) {
 								type='text'
 								id='name'
 								value={name}
-								onChange={(event) => setName(event.target.value)}
+								onChange={(event) => setName(event.target.value.toLowerCase())}
 								onBlur={() => {
 									if (!name) {
 										setValidations({ ...validations, name: false });

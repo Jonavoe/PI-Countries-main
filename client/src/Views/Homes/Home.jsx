@@ -18,6 +18,7 @@ function Home({ countries }) {
 			clearTimeout(timeout);
 		};
 	}, []);
+
 	const [currentPage, setCurrentPage] = useState(1);
 	const [countriesPerPage] = useState(10);
 	const [searchValue, setSearchValue] = useState('');
@@ -44,7 +45,8 @@ function Home({ countries }) {
 					sortActivity === ''
 						? true
 						: country.Activities.some((activity) =>
-								activity.name.toLowerCase().includes(sortActivity))
+								activity.name.toLowerCase().includes(sortActivity)
+						  )
 				)
 				.sort((a, b) => {
 					if (sortAlphabetically === 'asc') {
@@ -97,10 +99,17 @@ function Home({ countries }) {
 		setSortActivity(event.target.value.toLowerCase());
 	}
 
-
 	function filterOn() {
 		setFilter(!filter);
 	}
+
+	const allActivities = [
+		...new Set(
+			(countries || []).flatMap((country) =>
+				(country.Activities || []).map((activity) => activity.name)
+			)
+		),
+	];
 
 	return (
 		<div className={`${styles.container} ${show ? styles.show : ''}`}>
@@ -114,6 +123,8 @@ function Home({ countries }) {
 				<Filters
 					handleSortRegion={handleSortRegion}
 					handleSortActivity={handleSortActivity}
+					allActivities={allActivities}
+					sortActivity={sortActivity}
 					handleSortAlphabetically={handleSortAlphabetically}
 					handleSortPopulation={handleSortPopulation}
 				/>
