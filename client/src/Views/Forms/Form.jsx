@@ -59,7 +59,6 @@ function Form({ allCountries }) {
 					countries: selectedCountries,
 				}
 			);
-			console.log(response.data);
 			setShowSuccessMessage(true);
 			setTimeout(() => setShowSuccessMessage(false), 3000);
 			setName(name);
@@ -68,7 +67,6 @@ function Form({ allCountries }) {
 			setSeason(season);
 			setSelectedCountries(selectedCountries);
 		} catch (error) {
-			console.error(error);
 			setShowErrorMessage(true);
 			setErrorMessage(error.message);
 			setTimeout(() => setShowErrorMessage(false), 3000);
