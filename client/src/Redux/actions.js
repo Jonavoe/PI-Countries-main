@@ -18,14 +18,18 @@ export const setCountries = (countries) => ({
 
 export const fetchCountries = () => {
 	return (dispatch) => {
-		return axios
-			// .get('http://localhost:3001/countries')
-			.get('https://pi-countries-main-production-3180.up.railway.app/countries')
-			.then((response) => {
-				const countries = response.data;
-				dispatch(setCountries(countries));
-			})
-			.catch((error) => console.log(error));
+		return (
+			axios
+				// .get('http://localhost:3001/countries')
+				.get(
+					'https://pi-countries-main-production-3180.up.railway.app/countries'
+				)
+				.then((response) => {
+					const countries = response.data;
+					dispatch(setCountries(countries));
+				})
+				.catch((error) => console.log(error))
+		);
 	};
 };
 
@@ -40,7 +44,9 @@ export const fetchCountryData = (searchValue) => {
 	return (dispatch) => {
 		dispatch({ type: FETCH_COUNTRY_REQUEST });
 		axios
-			.get(`https://pi-countries-main-production-3180.up.railway.app/countries/name/?name=${searchValue}`)
+			.get(
+				`https://pi-countries-main-production-3180.up.railway.app/countries/name/?name=${searchValue}`
+			)
 			.then((response) => {
 				const countryData = response.data;
 				dispatch(fetchCountrySuccess(countryData));
@@ -62,7 +68,9 @@ export const fetchDetailData = (id) => {
 	return (dispatch) => {
 		dispatch({ type: FETCH_DETAIL_REQUEST });
 		axios
-			.get(`https://pi-countries-main-production-3180.up.railway.app/countries/${id}`)
+			.get(
+				`https://pi-countries-main-production-3180.up.railway.app/countries/${id}`
+			)
 			.then((response) => {
 				const detailData = response.data;
 				dispatch(fetchDetailSuccess(detailData));
@@ -84,7 +92,9 @@ export const deleteActivityRequest = (idActivity, idCountry) => {
 	return (dispatch) => {
 		dispatch({ type: DELETE_ACTIVITY_REQUEST });
 		axios
-			.delete(`https://pi-countries-main-production-3180.up.railway.app/activities/${idActivity}`)
+			.delete(
+				`https://pi-countries-main-production-3180.up.railway.app/activities/${idActivity}`
+			)
 			.then((response) => {
 				const deleteActivity = response.data;
 				dispatch(deleteActivitySuccess(deleteActivity));

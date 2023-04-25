@@ -8,11 +8,6 @@ function Earth() {
 			className={styles.link}
 			to='/home'>
 			<div className={styles.world}></div>
-			{/* <img
-							className={styles.earth}
-							src='https://i.postimg.cc/GmXHvtvx/mundoBGR.png'
-							alt='earth'
-						/> */}
 		</Link>
 	);
 }

@@ -6,17 +6,13 @@ import Header from '../../Components/Header/Header';
 import Filters from '../../Components/Filters/Filters';
 import CountryList from '../../Components/CountryList/CountryList';
 import Pagination from '../../Components/Pagination/Pagination';
+import showAnimation from '../../Components/ShowAnimation/ShowAnimation';
 
 function Home({ countries }) {
 	const [show, setShow] = useState(false);
 
 	useEffect(() => {
-		const timeout = setTimeout(() => {
-			setShow(true);
-		}, 500);
-		return () => {
-			clearTimeout(timeout);
-		};
+		showAnimation(setShow);
 	}, []);
 
 	const [currentPage, setCurrentPage] = useState(1);

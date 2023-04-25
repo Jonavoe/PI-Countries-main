@@ -3,17 +3,13 @@ import { Link, useParams } from 'react-router-dom';
 import { fetchDetailData } from '../../Redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './Detail.module.css';
+import showAnimation from '../../Components/ShowAnimation/ShowAnimation';
 
 function Detail() {
 	const [show, setShow] = useState(false);
 
 	useEffect(() => {
-		const timeout = setTimeout(() => {
-			setShow(true);
-		}, 500);
-		return () => {
-			clearTimeout(timeout);
-		};
+		showAnimation(setShow);
 	}, []);
 
 	const detailData = useSelector((state) => state.detailData);

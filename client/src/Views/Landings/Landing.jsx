@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Landing.module.css';
 import Earth from '../../Components/earth/Earth';
+import showAnimation from '../../Components/ShowAnimation/ShowAnimation';
 
 function Landing() {
 	const [show, setShow] = useState(false);
 
 	useEffect(() => {
-		const timeout = setTimeout(() => {
-			setShow(true);
-		}, 500);
-		return () => {
-			clearTimeout(timeout);
-		};
+		showAnimation(setShow);
 	}, []);
 	return (
 		<div className={`${styles.container} ${show ? styles.show : ''}`}>

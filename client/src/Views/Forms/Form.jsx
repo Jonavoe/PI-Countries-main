@@ -2,17 +2,13 @@ import React, { useEffect, useState } from 'react';
 import styles from './Form.module.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import showAnimation from '../../Components/ShowAnimation/ShowAnimation';
 
 function Form({ allCountries }) {
 	const [show, setShow] = useState(false);
 
 	useEffect(() => {
-		const timeout = setTimeout(() => {
-			setShow(true);
-		}, 500);
-		return () => {
-			clearTimeout(timeout);
-		};
+		showAnimation(setShow);
 	}, []);
 
 	const [name, setName] = useState('');

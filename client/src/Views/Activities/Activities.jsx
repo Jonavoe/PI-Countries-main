@@ -3,17 +3,15 @@ import { Link, useParams } from 'react-router-dom';
 import { fetchDetailData, deleteActivityRequest } from '../../Redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './Activities.module.css';
+import showAnimation from '../../Components/ShowAnimation/ShowAnimation';
 
 function Activities() {
 	const [show, setShow] = useState(false);
 
+	
+
 	useEffect(() => {
-		const timeout = setTimeout(() => {
-			setShow(true);
-		}, 500);
-		return () => {
-			clearTimeout(timeout);
-		};
+		showAnimation(setShow);
 	}, []);
 
 	const detailData = useSelector((state) => state.detailData);
