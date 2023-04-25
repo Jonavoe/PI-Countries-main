@@ -99,13 +99,14 @@ function Home({ countries }) {
 		setFilter(!filter);
 	}
 
-	const allActivities = [
-		...new Set(
-			(countries || []).flatMap((country) =>
-				(country.Activities || []).map((activity) => activity.name)
-			)
-		),
-	];
+	const allActivities = [];
+	for (const country of countries || []) {
+		for (const activity of country.Activities || []) {
+			if (!allActivities.includes(activity.name)) {
+				allActivities.push(activity.name);
+			}
+		}
+	}
 
 	return (
 		<div className={`${styles.container} ${show ? styles.show : ''}`}>

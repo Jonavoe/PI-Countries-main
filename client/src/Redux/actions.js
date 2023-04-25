@@ -44,6 +44,7 @@ export const fetchCountryData = (searchValue) => {
 	return (dispatch) => {
 		dispatch({ type: FETCH_COUNTRY_REQUEST });
 		axios
+			// .get(`http://localhost:3001/countries/name/?name=${searchValue}`)
 			.get(
 				`https://pi-countries-main-production-3180.up.railway.app/countries/name/?name=${searchValue}`
 			)
@@ -68,6 +69,7 @@ export const fetchDetailData = (id) => {
 	return (dispatch) => {
 		dispatch({ type: FETCH_DETAIL_REQUEST });
 		axios
+			// .get(`http://localhost:3001/countries/name/?name=${id}`)
 			.get(
 				`https://pi-countries-main-production-3180.up.railway.app/countries/${id}`
 			)
@@ -92,13 +94,15 @@ export const deleteActivityRequest = (idActivity, idCountry) => {
 	return (dispatch) => {
 		dispatch({ type: DELETE_ACTIVITY_REQUEST });
 		axios
+			// .delete(
+			// 	`http://localhost:3001/activities/${idActivity}`
 			.delete(
 				`https://pi-countries-main-production-3180.up.railway.app/activities/${idActivity}`
 			)
 			.then((response) => {
 				const deleteActivity = response.data;
 				dispatch(deleteActivitySuccess(deleteActivity));
-				dispatch(fetchDetailData(idCountry)); // actualizar el estado aquí con el id del país
+				dispatch(fetchDetailData(idCountry));
 			})
 			.catch((error) => {
 				dispatch({ type: DELETE_ACTIVITY_FAILURE, payload: error.message });

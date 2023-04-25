@@ -25,10 +25,6 @@ function Filters({
 			</div>
 			<div className={styles.input}>
 				<label>Activity</label>
-				{/* <input
-					onChange={handleSortActivity}
-					placeholder='Busca tu actividad'
-				/> */}
 				<select
 					onChange={handleSortActivity}
 					value={sortActivity}>

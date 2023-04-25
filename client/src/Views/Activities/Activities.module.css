@@ -79,11 +79,13 @@ h2 {
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: center;
+	width: 80%;
 }
 
 @media screen and (max-width: 768px) {
 	.activitiesCards {
 		gap: .5rem;
+		width: 100%;
 	}
 }
 
