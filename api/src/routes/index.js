@@ -13,14 +13,6 @@ const router = Router();
 
 saveApiData();
 
-router.get('/', async (req, res) => {
-	try {
-		const allCountries = await saveApiData();
-		res.status(200).json(allCountries);
-	} catch (error) {
-		res.status(400).json({ error: error.message });
-	}
-});
 //Busca todos los paises
 router.get('/countries', async (req, res) => {
 	try {

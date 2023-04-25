@@ -25,7 +25,7 @@ const postActivity = async (req, res) => {
 			season,
 		});
 
-		// Relacionar la actividad con los países indicados
+		// Relacion la actividad con los países indicados
 		if (countries && countries.length) {
 			const countryInstances = await Country.findAll({
 				where: { id: countries },
@@ -35,7 +35,7 @@ const postActivity = async (req, res) => {
 
 		res.status(201).json(activity);
 	} catch (error) {
-		// Manejar errores
+		// Manejo errores
 		console.error(error);
 		res
 			.status(500)
