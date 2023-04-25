@@ -16,6 +16,11 @@
 	margin-bottom: 8rem;
 	margin-left: 2rem;
 }
+@media screen and (max-width: 768px) {
+	.containerEarth {
+		margin-bottom: 12rem;
+	}
+}
 
 .title {
 	font-size: 8rem;
