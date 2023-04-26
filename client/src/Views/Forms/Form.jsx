@@ -48,9 +48,10 @@ function Form({ allCountries }) {
 				alert('Please fill in all the fields');
 				throw new Error('Please fill in all the fields');
 			}
-			// const response = await axios.post('http://localhost:3001/activities', {
-			const response = await axios.post(
-				'https://pi-countries-main-production-3180.up.railway.app/activities',
+			// const response = await axios.post(
+				// 'http://localhost:3001/activities',
+				const response = await axios.post(
+					'https://pi-countries-main-production-3180.up.railway.app/activities',
 				{
 					name,
 					difficult,
