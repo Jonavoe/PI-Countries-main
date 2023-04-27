@@ -29,10 +29,10 @@ function UpdateActivities({ allCountries }) {
 		countries: false,
 	});
 
-	const countries = Array.isArray(allCountries) && allCountries.length > 0
-  ? allCountries.map((country) => ({ id: country.id, name: country.name }))
-  : [];
-
+	const countries =
+		Array.isArray(allCountries) && allCountries.length > 0
+			? allCountries.map((country) => ({ id: country.id, name: country.name }))
+			: [];
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
@@ -49,7 +49,8 @@ function UpdateActivities({ allCountries }) {
 			}
 
 			const response = await axios.put(
-				`http://localhost:3001/activities/${id}`,
+				// `http://localhost:3001/activities/${id}`,
+				`https://pi-countries-main-production-3180.up.railway.app/activities/${id}`,
 				{
 					name,
 					difficult,
@@ -75,7 +76,8 @@ function UpdateActivities({ allCountries }) {
 
 	const handleCountryChange = (event) => {
 		const selectedOptions = Array.from(event.target.selectedOptions);
-		const selectedCountryCodes = selectedOptions && selectedOptions.map((option) => option.value);
+		const selectedCountryCodes =
+			selectedOptions && selectedOptions.map((option) => option.value);
 		selectedCountryCodes.forEach((code) => {
 			if (!selectedCountries.includes(code)) {
 				setSelectedCountries([...selectedCountries, code]);
@@ -225,18 +227,19 @@ function UpdateActivities({ allCountries }) {
 							</select>
 						</div>
 						<div className={styles.countries}>
-							{selectedCountries && selectedCountries.map((id) => (
-								<button
-									key={id}
-									onClick={() =>
-										setSelectedCountries(
-											selectedCountries.filter((c) => c !== id)
-										)
-									}>
-									{allCountries.find((country) => country.id === id).name}{' '}
-									&times;
-								</button>
-							))}
+							{selectedCountries &&
+								selectedCountries.map((id) => (
+									<button
+										key={id}
+										onClick={() =>
+											setSelectedCountries(
+												selectedCountries.filter((c) => c !== id)
+											)
+										}>
+										{allCountries.find((country) => country.id === id).name}{' '}
+										&times;
+									</button>
+								))}
 						</div>
 
 						<div className={styles.submit}>
@@ -257,11 +260,13 @@ function UpdateActivities({ allCountries }) {
 							<div className={styles.countriesActivity}>
 								<p>Countries:</p>
 								<ul>
-									{selectedCountries && selectedCountries.map((id) => (
-										<li key={id}>
-											{allCountries.find((country) => country.id === id).name},
-										</li>
-									))}
+									{selectedCountries &&
+										selectedCountries.map((id) => (
+											<li key={id}>
+												{allCountries.find((country) => country.id === id).name}
+												,
+											</li>
+										))}
 								</ul>
 							</div>
 						</div>
