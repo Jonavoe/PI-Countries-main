@@ -8,6 +8,7 @@ import Form from './Views/Forms/Form';
 import Home from './Views/Homes/Home';
 import Landing from './Views/Landings/Landing';
 import Activities from './Views/Activities/Activities';
+import UpdateActivities from './Views/UpdateActivities/UpdateActivities';
 
 function App() {
 	const dispatch = useDispatch();
@@ -31,6 +32,10 @@ function App() {
 				<Route
 					path='/form'
 					element={<Form allCountries={countries} />}
+				/>
+				<Route
+					path='/updateactivity/:id'
+					element={<UpdateActivities allCountries={countries} />}
 				/>
 				<Route
 					path='/detail/:id'

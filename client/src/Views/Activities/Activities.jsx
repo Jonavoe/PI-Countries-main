@@ -8,8 +8,6 @@ import showAnimation from '../../Components/ShowAnimation/ShowAnimation';
 function Activities() {
 	const [show, setShow] = useState(false);
 
-	
-
 	useEffect(() => {
 		showAnimation(setShow);
 	}, []);
@@ -51,22 +49,29 @@ function Activities() {
 						<h2>Activities</h2>
 						<div className={styles.activitiesCards}>
 							{detailData.Activities.map((activity) => (
-								<div
-									className={styles.activityCards}
-									key={activity.id}>
-									<div className={styles.text}>
+								<div className={styles.activityCards}>
+									<div
+										key={activity.id}
+										className={styles.text}>
 										<p>Name: {activity.name}</p>
 										<p>Difficult: {activity.difficult}</p>
 										<p>Duration: {activity.duration}</p>
 										<p>Season: {activity.season}</p>
 									</div>
-									<button
-										className={styles.btn}
-										onClick={() => {
-											deleteActivity(activity.id);
-										}}>
-										Delete Activity
-									</button>
+									<div className={styles.btnC}>
+										<button
+											className={styles.btn}
+											onClick={() => {
+												deleteActivity(activity.id);
+											}}>
+											Delete
+										</button>
+										<Link
+											className={styles.link}
+											to={`/updateactivity/${activity.id}`}>
+											<button className={styles.btn}>Update</button>
+										</Link>
+									</div>
 								</div>
 							))}
 						</div>

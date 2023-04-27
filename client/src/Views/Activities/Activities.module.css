@@ -24,6 +24,7 @@ h2 {
 .container {
 	opacity: 0;
 	transition: opacity 0.5s ease-in-out;
+	
 }
 
 .container.show {
@@ -81,12 +82,15 @@ h2 {
 	align-items: center;
 	justify-content: center;
 	width: 80%;
+	font-size: 1rem;
+	
 }
 
 @media screen and (max-width: 768px) {
 	.activitiesCards {
 		gap: .5rem;
 		width: 100%;
+		
 	}
 }
 
@@ -116,8 +120,13 @@ h2 {
 	box-shadow: 0 0 10px rgb(255, 255, 232);
 }
 
+.btnC {
+	display: flex;
+	gap: .2rem;
+}
+
 .btn {
-	font-size: 1rem;
+	font-size: .8rem;
 	color: white;
 	text-shadow: 0 0 5px #444, 0 0 5px #444, 0 0 5px #444;
 	padding: 0.5rem 1rem;
@@ -136,6 +145,8 @@ h2 {
 	box-shadow: 0 0 1rem rgb(255, 255, 232);
 }
 
+
+
 .text {
 	display: flex;
 	flex-direction: column;
@@ -153,3 +164,4 @@ h2 {
 		padding: 0.5rem 2rem;
 	}
 }
+

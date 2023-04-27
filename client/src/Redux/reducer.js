@@ -3,6 +3,7 @@ import {
 	FETCH_COUNTRY_SUCCESS,
 	FETCH_DETAIL_SUCCESS,
 	DELETE_ACTIVITY,
+	UPDATE_ACTIVITY_SUCCESS,
 } from './actions';
 
 const initialState = {
@@ -30,6 +31,11 @@ const countriesReducer = (state = initialState, action) => {
 			return {
 				...state,
 				deleteActivity: action.payload,
+			};
+		case UPDATE_ACTIVITY_SUCCESS:
+			return {
+				...state,
+				updateActivity: action.payload,
 			};
 		default:
 			return state;

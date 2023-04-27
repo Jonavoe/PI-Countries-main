@@ -7,7 +7,7 @@ const { postActivity } = require('../controllers/postActivity');
 const { saveApiData } = require('../controllers/getApiData');
 const { getAllActivities } = require('../controllers/getAllActivities');
 const { deleteActivity } = require('../controllers/deleteActivity');
-
+const { updateActivity } = require('../controllers/updateActivity');
 
 const router = Router();
 
@@ -61,6 +61,9 @@ router.get('/activities', async (req, res, next) => {
 
 //Post activity
 router.post('/activities', postActivity);
+
+//Put activity
+router.put('/activities/:id', updateActivity);
 
 router.delete('/activities/:id', deleteActivity);
 
