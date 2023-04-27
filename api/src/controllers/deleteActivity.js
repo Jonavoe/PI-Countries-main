@@ -14,22 +14,3 @@ const deleteActivity = async (req, res) => {
 };
 
 module.exports = { deleteActivity };
-
-// const { Activity } = require('../db.js');
-
-// const deleteActivity = (req, res) => {
-// 	const id = req.params.id;
-// 	Activity.findByPk(id)
-// 		.then((deletedActivity) => {
-// 			Activity.destroy({
-// 				where: { id: id },
-// 			}).then(() => {
-// 				res.status(200).json({ deletedActivity: deletedActivity });
-// 			});
-// 		})
-// 		.catch((error) => {
-// 			res.status(500).json({ error: error.message });
-// 		});
-// };
-
-// module.exports = { deleteActivity };

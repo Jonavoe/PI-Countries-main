@@ -35,7 +35,6 @@
 	margin: 0.1rem;
 }
 
-
 @media screen and (max-width: 1024px) {
 	.card h3 {
 		font-size: 1rem;
@@ -49,7 +48,7 @@
 }
 @media screen and (max-width: 1024px) {
 	.card h4 {
-		font-size: .8rem;
+		font-size: 0.8rem;
 	}
 }
 
@@ -79,7 +78,7 @@
 }
 
 @media screen and (max-width: 1024px) {
-	.containerImage::before{
+	.containerImage::before {
 		width: 72%;
 	}
 }
@@ -98,7 +97,7 @@
 	opacity: 0;
 }
 .containerImage:hover .messi {
-	opacity: .9;
+	opacity: 0.9;
 }
 
 @media screen and (max-width: 1024px) {
@@ -112,4 +111,30 @@
 	.bandera {
 		width: 70%;
 	}
+}
+
+@keyframes shake {
+	0% {
+		transform: rotate(0deg);
+	}
+	10%,
+	30%,
+	50%,
+	70%,
+	90% {
+		transform: rotate(-7deg);
+	}
+	20%,
+	40%,
+	60%,
+	80% {
+		transform: rotate(7deg);
+	}
+	100% {
+		transform: rotate(0deg);
+	}
+}
+
+.shake {
+	animation: shake 1.5s;
 }

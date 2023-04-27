@@ -7,6 +7,7 @@ const getAllCountries = async () => {
 				model: Activity,
 				attributes: ['id', 'name', 'difficult', 'duration', 'season'],
 				through: {
+					//excluir atributos de la tabla intermedia obteniendo solo de la tabla Country y Activity
 					attributes: [],
 				},
 			},

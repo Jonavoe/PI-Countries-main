@@ -2,7 +2,6 @@ const { Activity, Country } = require('../db');
 
 const postActivity = async (req, res) => {
 	try {
-		// Validar entrada
 		const { name, difficult, duration, season, countries } = req.body;
 
 		if (!name || !difficult || !duration || !season) {
@@ -35,7 +34,6 @@ const postActivity = async (req, res) => {
 
 		res.status(201).json(activity);
 	} catch (error) {
-		// Manejo errores
 		console.error(error);
 		res
 			.status(500)

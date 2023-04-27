@@ -25,8 +25,43 @@ function Home({ countries }) {
 	const [filter, setFilter] = useState('');
 	const dispatch = useDispatch();
 
+	//calcular los índices del primer y último país que se mostrarán
 	const indexOfLastCountry = currentPage * countriesPerPage;
 	const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
+
+	// const filteredCountries = Array.isArray(countries)
+	// 	? countries
+	// 			.filter((country) =>
+	// 				country.name.toLowerCase().includes(searchValue.toLowerCase())
+	// 			)
+	// 			.filter(
+	// 				(country) =>
+	// 					sortRegion === '' || country.continent.toLowerCase() === sortRegion
+	// 			)
+	// 			.filter((country) =>
+	// 				sortActivity === ''
+	// 					? true
+	// 					: country.Activities.some((activity) =>
+	// 							activity.name.toLowerCase().includes(sortActivity)
+	// 					  )
+	// 			)
+	// 			.sort((a, b) => {
+	// 				if (sortAlphabetically === 'asc') {
+	// 					return a.name.localeCompare(b.name);
+	// 				} else if (sortAlphabetically === 'desc') {
+	// 					return b.name.localeCompare(a.name);
+	// 				}
+	// 				return 0;
+	// 			})
+	// 			.sort((a, b) => {
+	// 				if (sortPopulation === 'asc') {
+	// 					return a.population - b.population;
+	// 				} else if (sortPopulation === 'desc') {
+	// 					return b.population - a.population;
+	// 				}
+	// 				return 0;
+	// 			})
+	// 	: [];
 
 	const filteredCountries = Array.isArray(countries)
 		? countries
@@ -58,11 +93,13 @@ function Home({ countries }) {
 				})
 		: [];
 
+		//extrae una porcion de la lista completa
 	const currentCountries = filteredCountries.slice(
 		indexOfFirstCountry,
 		indexOfLastCountry
 	);
 
+	//calcula el numero total de paginas
 	const totalPages = Math.ceil(filteredCountries.length / countriesPerPage);
 
 	function handleClick(pageNumber) {

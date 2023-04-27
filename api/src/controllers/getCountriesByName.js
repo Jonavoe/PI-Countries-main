@@ -6,6 +6,7 @@ const getCountriesByName = async (name) => {
 		const countries = await Country.findAll({
 			where: {
 				name: {
+					//realizar una búsqueda de texto insensible a mayúsculas y minúsculas
 					[Op.iLike]: `%${name}%`
 				},
 			},
