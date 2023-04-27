@@ -23,9 +23,8 @@ export const fetchCountries = () => {
 	return (dispatch) => {
 		return axios
 			.get(
-				'http://localhost:3001/countries'
-				// .get(
-				// 	'https://pi-countries-main-production-3180.up.railway.app/countries'
+				// 'http://localhost:3001/countries'
+					'https://pi-countries-main-production-3180.up.railway.app/countries'
 			)
 			.then((response) => {
 				const countries = response.data;
