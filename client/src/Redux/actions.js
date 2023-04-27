@@ -47,9 +47,8 @@ export const fetchCountryData = (searchValue) => {
 		dispatch({ type: FETCH_COUNTRY_REQUEST });
 		axios
 			.get(
-				`http://localhost:3001/countries/name/?name=${searchValue}`
-				// .get(
-				// 	`https://pi-countries-main-production-3180.up.railway.app/countries/name/?name=${searchValue}`
+				// `http://localhost:3001/countries/name/?name=${searchValue}`
+					`https://pi-countries-main-production-3180.up.railway.app/countries/name/?name=${searchValue}`
 			)
 			.then((response) => {
 				const countryData = response.data;
@@ -73,9 +72,8 @@ export const fetchDetailData = (id) => {
 		dispatch({ type: FETCH_DETAIL_REQUEST });
 		axios
 			.get(
-				`http://localhost:3001/countries/${id}`
-				// .get(
-				// 	`https://pi-countries-main-production-3180.up.railway.app/countries/${id}`
+				// `http://localhost:3001/countries/${id}`
+					`https://pi-countries-main-production-3180.up.railway.app/countries/${id}`
 			)
 			.then((response) => {
 				const detailData = response.data;
@@ -99,9 +97,8 @@ export const deleteActivityRequest = (idActivity, idCountry) => {
 		dispatch({ type: DELETE_ACTIVITY_REQUEST });
 		axios
 			.delete(
-				`http://localhost:3001/activities/${idActivity}`
-				// .delete(
-				// 	`https://pi-countries-main-production-3180.up.railway.app/activities/${idActivity}`
+				// `http://localhost:3001/activities/${idActivity}`
+					`https://pi-countries-main-production-3180.up.railway.app/activities/${idActivity}`
 			)
 			.then((response) => {
 				const deleteActivity = response.data;
@@ -125,9 +122,8 @@ export const updateActivityRequest = (idActivity, updatedData, idCountry) => {
 
 		axios
 			.update(
-				`http://localhost:3001/activities/${idActivity}`,
-				// .update(
-				// 	`https://pi-countries-main-production-3180.up.railway.app/activities/${idActivity}`,
+				// `http://localhost:3001/activities/${idActivity}`,
+					`https://pi-countries-main-production-3180.up.railway.app/activities/${idActivity}`,
 				updatedData
 			)
 			.then((response) => {
